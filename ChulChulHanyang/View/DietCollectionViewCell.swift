@@ -85,8 +85,14 @@ extension DietCollectionViewCell: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         
         cell.textLabel?.text = menu[indexPath.row]
+        
         cell.textLabel?.textAlignment = indexPath.row != 0 ? .center : .left
         cell.textLabel?.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 20) : UIFont.systemFont(ofSize: 25, weight: .bold)
+        if menu[indexPath.row] == "[Dam-A]" || menu[indexPath.row] == "[Pangeos]" {
+            cell.textLabel?.textAlignment = .left
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        }
+        
         return cell
     }
     

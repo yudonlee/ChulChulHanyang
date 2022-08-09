@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DietCollectionViewCell.self, forCellWithReuseIdentifier: DietCollectionViewCell.identifier)
         collectionView.backgroundColor = .backgroundGray
-        
+        collectionView.allowsSelection = false
         return collectionView
     }()
     
