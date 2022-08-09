@@ -22,7 +22,7 @@ final class CrawlManager {
     
     func crawlRestaurantMenu(date: Date, restaurantType: RestaurantType) -> [[String]]? {
         
-        let linkString = getRestaurantURL(type: restaurantType.rawValue, month: date.month, day: date.day, year: date.year)
+        let linkString = getRestaurantURL(type: restaurantType.link, month: date.month, day: date.day, year: date.year)
         
         guard let encodedStr = linkString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encodedStr) else {
             return nil
