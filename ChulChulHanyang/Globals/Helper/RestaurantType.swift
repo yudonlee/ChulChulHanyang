@@ -9,12 +9,29 @@
 import Foundation
 
 enum RestaurantType: Int {
-    case HanyangPlaza = 1
-    case HumanEcology = 2
-    case MaterialScience = 4
-    case ResidenceOne = 6
-    case ResidenceTwo = 7
-    case HangwonPark = 8
+    case HumanEcology = 0
+    case MaterialScience = 1
+    case ResidenceOne = 2
+    case ResidenceTwo = 3
+    case HanyangPlaza = 4
+    case HangwonPark = 5
+    
+    var link: Int {
+        switch self {
+        case .HanyangPlaza:
+            return 1
+        case .HumanEcology:
+            return 2
+        case .MaterialScience:
+            return 4
+        case .ResidenceOne:
+            return 6
+        case .ResidenceTwo:
+            return 7
+        case .HangwonPark:
+            return 8
+        }
+    }
 }
 
 struct URLConstants {

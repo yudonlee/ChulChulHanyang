@@ -26,17 +26,19 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
-        requestData()
         dietCollectionView.delegate = self
         dietCollectionView.dataSource = self
         datePartView.setParentViewController(view: self)
+        restaurantSelectView.setParentViewController(view: self)
+        requestData()
     }
     
     func requestData() {
         
-        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: .HumanEcology) else {
+        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: restaurantSelectView.typeData()) else {
             return
         }
+        crawledData
         data = crawledData
         DispatchQueue.main.async { [weak self] in
             self?.dietCollectionView.reloadData()
