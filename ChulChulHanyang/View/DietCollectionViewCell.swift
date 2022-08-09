@@ -68,6 +68,9 @@ class DietCollectionViewCell: UICollectionViewCell {
     
     func configure(with model: [String]) {
         menu = model
+        DispatchQueue.main.async { [weak self] in
+            self?.menuTable.reloadData()
+        }
     }
 }
 

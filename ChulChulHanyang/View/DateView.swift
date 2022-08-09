@@ -10,7 +10,9 @@ import UIKit
 class DateView: UIView {
     
     private var userDate: Date = Date()
-
+    
+    private var parent: MainViewController?
+    
     lazy private var leftChevronButton: UIButton = { button in
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30))
         button.setImage(UIImage(systemName: "chevron.left", withConfiguration: config), for: .normal)
@@ -18,7 +20,7 @@ class DateView: UIView {
         button.tintColor = .black
         button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 16)
         return button
-    
+        
     }(UIButton())
     
     lazy private var rightChevronButton: UIButton = { button in
@@ -81,10 +83,23 @@ class DateView: UIView {
         
     }
     
+    
     private func setDateAndDayLabel() {
         dateLabel.text = userDate.dateText
         dayLabel.text = userDate.dayText
-        
+    }
+    
+}
+
+
+extension DateView {
+    
+    func userDateData() -> Date {
+        return userDate
+    }
+    
+    func setParentViewController(view: MainViewController) {
+        parent = view
     }
     
     @objc func addOneDayToCurrent() {
@@ -93,6 +108,7 @@ class DateView: UIView {
         }
         userDate = date
         setDateAndDayLabel()
+        parent?.requestData()
     }
     
     @objc func minusOneDayToCurrent() {
@@ -101,6 +117,7 @@ class DateView: UIView {
         }
         userDate = date
         setDateAndDayLabel()
+        parent?.requestData()
     }
     
 }
