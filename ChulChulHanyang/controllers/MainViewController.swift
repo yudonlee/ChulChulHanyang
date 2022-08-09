@@ -38,8 +38,12 @@ final class MainViewController: UIViewController {
         guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: restaurantSelectView.typeData()) else {
             return
         }
-        crawledData
-        data = crawledData
+        
+        data = crawledData.map({ strArray in
+            strArray.filter { str in
+                !["-"].contains(str)
+            }
+        })
         DispatchQueue.main.async { [weak self] in
             self?.dietCollectionView.reloadData()
         }
