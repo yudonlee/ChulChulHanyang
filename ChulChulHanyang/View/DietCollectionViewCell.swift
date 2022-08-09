@@ -18,6 +18,7 @@ class DietCollectionViewCell: UICollectionViewCell {
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
         table.allowsSelectionDuringEditing = false
         table.separatorStyle = .none
+        table.isUserInteractionEnabled = false
         return table
     }()
     
