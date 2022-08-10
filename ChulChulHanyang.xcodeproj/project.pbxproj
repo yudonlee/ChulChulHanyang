@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76564A9928A2AA8100C07A99 /* MenuViewModel.swift */; };
 		767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB4289FE428006DF76F /* AppDelegate.swift */; };
 		767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB6289FE428006DF76F /* SceneDelegate.swift */; };
 		767D1CBE289FE429006DF76F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767D1CBD289FE429006DF76F /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76564A9928A2AA8100C07A99 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		767D1CB1289FE428006DF76F /* ChulChulHanyang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChulChulHanyang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767D1CB4289FE428006DF76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		767D1CB6289FE428006DF76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */,
+				76564A9928A2AA8100C07A99 /* MenuViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
 				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
+				76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */,
 				767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */,
 				76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */,
 			);
