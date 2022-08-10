@@ -128,33 +128,7 @@ extension DietCollectionViewCell: UITableViewDataSource {
         }
 
         
-        
         cell.contentConfiguration = content
-        
-        
-        
-        
-//        cell.textLabel?.text = menu[indexPath.row]
-//
-//        cell.textLabel?.textAlignment = indexPath.row != 0 ? .center : .left
-//        cell.textLabel?.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 20) : UIFont.systemFont(ofSize: 25, weight: .bold)
-//
-//
-//        switch type {
-//        case .HumanEcology:
-//            if menu[indexPath.row] == "[Dam-A]" || menu[indexPath.row] == "[Pangeos]" {
-//                cell.textLabel?.textAlignment = .left
-//                cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-//
-//            }
-//        case .MaterialScience:
-//            if menu[indexPath.row] == "[정식]" || menu[indexPath.row] == "[일품]" {
-//                cell.textLabel?.textAlignment = .left
-//                cell.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-//            }
-//        default:
-//            break
-//        }
         return cell
     }
     
