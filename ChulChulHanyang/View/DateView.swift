@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class DateView: UIView {
     
@@ -47,6 +48,7 @@ class DateView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        NotificationCenter.default.addObserver(self, selector: #selector(dayChanged(_:)), name: UIApplication.significantTimeChangeNotification, object: nil)
         render()
     }
     
@@ -102,7 +104,7 @@ extension DateView {
         parent = view
     }
     
-    @objc func addOneDayToCurrent() {
+    @objc private func addOneDayToCurrent() {
         guard let date = Calendar.current.date(byAdding: .day, value: 1, to: userDate) else {
             return
         }
@@ -111,11 +113,18 @@ extension DateView {
         parent?.requestData()
     }
     
-    @objc func minusOneDayToCurrent() {
+    @objc private func minusOneDayToCurrent() {
         guard let date = Calendar.current.date(byAdding: .day, value: -1, to: userDate) else {
             return
         }
         userDate = date
+        setDateAndDayLabel()
+        parent?.requestData()
+    }
+    
+    @objc private func dayChanged(_ notification: Notification) {
+        
+        userDate = Date()
         setDateAndDayLabel()
         parent?.requestData()
     }

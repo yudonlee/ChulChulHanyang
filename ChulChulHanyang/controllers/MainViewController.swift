@@ -113,9 +113,7 @@ extension MainViewController: UICollectionViewDataSource {
         
         cell.layer.cornerRadius = 22
         let model = MenuViewModel(diet: data[indexPath.row], type: restaurantSelectView.typeData())
-        DispatchQueue.main.async {
-            cell.configure(with: model)
-        }
+        cell.configure(with: model)
         
         return cell
     }

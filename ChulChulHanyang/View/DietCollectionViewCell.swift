@@ -77,10 +77,10 @@ class DietCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: MenuViewModel) {
-        menu = model.diet
-        type = model.type
         
         DispatchQueue.main.async { [weak self] in
+            self?.menu = model.diet
+            self?.type = model.type
             self?.menuTable.reloadData()
         }
     }
