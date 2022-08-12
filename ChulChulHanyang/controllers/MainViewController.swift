@@ -59,6 +59,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    
     private func render() {
         self.view.backgroundColor = .backgroundGray
         
@@ -112,7 +113,9 @@ extension MainViewController: UICollectionViewDataSource {
         
         cell.layer.cornerRadius = 22
         let model = MenuViewModel(diet: data[indexPath.row], type: restaurantSelectView.typeData())
-        cell.configure(with: model)
+        DispatchQueue.main.async {
+            cell.configure(with: model)
+        }
         
         return cell
     }
