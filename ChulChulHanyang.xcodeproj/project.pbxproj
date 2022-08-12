@@ -27,7 +27,6 @@
 		76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */; };
 		76EC20FB28A1519D00FDD319 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 76EC20FA28A1519D00FDD319 /* SwiftSoup */; };
 		76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20FD28A1542D00FDD319 /* CrawlManager.swift */; };
-		76EC210128A1550300FDD319 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 76EC210028A1550300FDD319 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76EC20FB28A1519D00FDD319 /* SwiftSoup in Frameworks */,
-				76EC210128A1550300FDD319 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +191,6 @@
 			name = ChulChulHanyang;
 			packageProductDependencies = (
 				76EC20FA28A1519D00FDD319 /* SwiftSoup */,
-				76EC210028A1550300FDD319 /* Alamofire */,
 			);
 			productName = ChulChulHanyang;
 			productReference = 767D1CB1289FE428006DF76F /* ChulChulHanyang.app */;
@@ -226,7 +223,6 @@
 			mainGroup = 767D1CA8289FE428006DF76F;
 			packageReferences = (
 				76EC20F928A1519D00FDD319 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				76EC20FF28A1550300FDD319 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 767D1CB2289FE428006DF76F /* Products */;
 			projectDirPath = "";
@@ -495,14 +491,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		76EC20FF28A1550300FDD319 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -510,11 +498,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 76EC20F928A1519D00FDD319 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		76EC210028A1550300FDD319 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 76EC20FF28A1550300FDD319 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
