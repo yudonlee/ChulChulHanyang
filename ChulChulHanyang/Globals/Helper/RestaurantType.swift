@@ -32,6 +32,23 @@ enum RestaurantType: Int {
             return 8
         }
     }
+    
+    var restaurantTime: [String: String] {
+        switch self {
+        case .HanyangPlaza:
+            return ["분식": "14:00 ~ 15:00", "중식/석식": "10:30 ~ 15:00 / 16:00 ~ 18:00", "중식": "10:00 ~ 14:00"]
+        case .HumanEcology:
+            return ["중식": "11:30~14:00", "석식": "17:00 ~ 18:00"]
+        case .MaterialScience:
+            return ["중식": "11:30~13:30", "석식": "17:00 ~ 18:30"]
+        case .ResidenceOne:
+            return ["조식": "07:30~09:00", "중식": "12:00 ~ 13:30", "석식": "17:30 ~ 18:30"]
+        case .ResidenceTwo:
+            return ["조식": "07:30 ~ 09:00", "중식": "12:00 ~ 13:30", "석식": "17:30 ~ 18:30"]
+        case .HangwonPark:
+            return ["점심": "11:30 ~ 14:00"]
+        }
+    }
 }
 
 struct URLConstants {

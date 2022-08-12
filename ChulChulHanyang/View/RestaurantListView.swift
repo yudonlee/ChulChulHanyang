@@ -102,6 +102,7 @@ extension RestaurantListView: UICollectionViewDataSource {
 extension RestaurantListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+
         switch indexPath.item {
         case RestaurantType.HanyangPlaza.rawValue:
             type = .HanyangPlaza

@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F5045E6-4B95-4E6F-A451-0AEC639E350D"
-            shouldBeEnabled = "No"
+            uuid = "04DEA856-316C-4737-BDB4-E98AC1628424"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ChulChulHanyang/Globals/Manager/CrawlManager.swift"
+            filePath = "ChulChulHanyang/View/RestaurantListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "crawlHanyangPlaza(url:)"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
