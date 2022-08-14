@@ -20,6 +20,9 @@
 		767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */; };
 		767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */; };
 		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
+		767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */; };
+		767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */; };
+		76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietCollectionViewCell.swift; sourceTree = "<group>"; };
+		767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 				767D1CCC289FE90C006DF76F /* DateView.swift */,
 				767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */,
 				767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */,
+				767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,6 +123,8 @@
 				767D1CD0289FEB64006DF76F /* View+Extension.swift */,
 				767D1CD2289FF537006DF76F /* Date+Extension.swift */,
 				767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */,
+				767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */,
+				76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -214,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
 				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
@@ -225,6 +235,8 @@
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
 				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
+				767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */,
+				76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
