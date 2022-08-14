@@ -16,6 +16,10 @@
 		767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD0289FEB64006DF76F /* View+Extension.swift */; };
 		767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD2289FF537006DF76F /* Date+Extension.swift */; };
 		767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD5289FF723006DF76F /* DateFormatter.swift */; };
+		767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */; };
+		767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */; };
+		767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */; };
+		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		767D1CD0289FEB64006DF76F /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		767D1CD2289FF537006DF76F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		767D1CD5289FF723006DF76F /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
+		767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
+		767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +71,11 @@
 			isa = PBXGroup;
 			children = (
 				767D1CCE289FEB54006DF76F /* Globals */,
+				767D1CDF28A0EAC9006DF76F /* ViewModels */,
 				767D1CCB289FE8F7006DF76F /* View */,
 				767D1CCA289FE8B9006DF76F /* controllers */,
 				767D1CB4289FE428006DF76F /* AppDelegate.swift */,
 				767D1CB6289FE428006DF76F /* SceneDelegate.swift */,
-				767D1CBD289FE429006DF76F /* Assets.xcassets */,
 				767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */,
 				767D1CC2289FE429006DF76F /* Info.plist */,
 			);
@@ -86,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				767D1CCC289FE90C006DF76F /* DateView.swift */,
+				767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */,
+				767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,6 +103,7 @@
 		767D1CCE289FEB54006DF76F /* Globals */ = {
 			isa = PBXGroup;
 			children = (
+				767D1CDB28A0B494006DF76F /* Resources */,
 				767D1CD4289FF71A006DF76F /* Helper */,
 				767D1CCF289FEB5B006DF76F /* Extension */,
 			);
@@ -104,6 +115,7 @@
 			children = (
 				767D1CD0289FEB64006DF76F /* View+Extension.swift */,
 				767D1CD2289FF537006DF76F /* Date+Extension.swift */,
+				767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -114,6 +126,22 @@
 				767D1CD5289FF723006DF76F /* DateFormatter.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		767D1CDB28A0B494006DF76F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				767D1CBD289FE429006DF76F /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		767D1CDF28A0EAC9006DF76F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,13 +214,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
+				767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */,
 				767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */,
 				767D1CCD289FE90C006DF76F /* DateView.swift in Sources */,
+				767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */,
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
+				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -314,7 +346,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
