@@ -19,34 +19,50 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(DietCollectionViewCell.self, forCellWithReuseIdentifier: DietCollectionViewCell.identifier)
         collectionView.backgroundColor = .backgroundGray
-        
+        collectionView.allowsSelection = false
         return collectionView
+    }()
+    
+    private let emptyMenuInformation: UILabel = {
+       let label = UILabel()
+        label.text = "해당 식당은 오늘 운영하지 않아요"
+        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.isHidden = true
+        label.textAlignment = .center
+        return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
-        requestData()
         dietCollectionView.delegate = self
         dietCollectionView.dataSource = self
         datePartView.setParentViewController(view: self)
+        restaurantSelectView.setParentViewController(view: self)
+        requestData()
     }
     
     func requestData() {
         
-        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: .HumanEcology) else {
+        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: restaurantSelectView.typeData()) else {
             return
         }
-        data = crawledData
+        
+        data = crawledData.map({ strArray in
+            strArray.filter { str in
+                !["-"].contains(str)
+            }
+        })
         DispatchQueue.main.async { [weak self] in
             self?.dietCollectionView.reloadData()
+            self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
         }
     }
     
     private func render() {
         self.view.backgroundColor = .backgroundGray
         
-        view.addSubviews(datePartView, restaurantSelectView, dietCollectionView)
+        view.addSubviews(datePartView, restaurantSelectView, dietCollectionView, emptyMenuInformation)
         
         let datePartViewConstraints = [
             datePartView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
@@ -70,7 +86,15 @@ final class MainViewController: UIViewController {
             
         ]
         
-        [datePartViewConstraints, restaurantSelectViewConstraints, dietCollectionViewConstraints].forEach { constraint in
+        let emptyMenuInformationConstraints = [
+            emptyMenuInformation.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            emptyMenuInformation.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            emptyMenuInformation.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            emptyMenuInformation.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            emptyMenuInformation.heightAnchor.constraint(equalToConstant: 30)
+        ]
+        
+        [datePartViewConstraints, restaurantSelectViewConstraints, dietCollectionViewConstraints, emptyMenuInformationConstraints].forEach { constraint in
             NSLayoutConstraint.activate(constraint)
         }
     }
@@ -87,7 +111,8 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         cell.layer.cornerRadius = 22
-        cell.configure(with: data[indexPath.row])
+        let model = MenuViewModel(diet: data[indexPath.row], type: restaurantSelectView.typeData())
+        cell.configure(with: model)
         
         return cell
     }
@@ -97,7 +122,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 345, height: data[indexPath.row].count * 40 + 20)
+        return CGSize(width: 345, height: data[indexPath.row].count * 40 + 20 + 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

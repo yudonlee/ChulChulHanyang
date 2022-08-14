@@ -9,7 +9,9 @@ import UIKit
 
 final class RestaurantListView: UIView {
     
-    private let restaurantName = ["생과대", "신소재", "제1생", "제2생", "학생식당", ]
+    private let restaurantName = ["생과대", "신소재", "제1생", "제2생", "학생식당", "행원파크"]
+    private var parent: MainViewController?
+    private var type: RestaurantType = .HumanEcology
     
     private enum Size {
         static let collectionHorizontalSpacing: CGFloat = 16.0
@@ -70,6 +72,14 @@ final class RestaurantListView: UIView {
         NSLayoutConstraint.activate(listCollectionViewConstraints)
     }
     
+    func setParentViewController(view: MainViewController) {
+        parent = view
+    }
+    
+    func typeData() -> RestaurantType {
+        return type
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -92,6 +102,23 @@ extension RestaurantListView: UICollectionViewDataSource {
 extension RestaurantListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        switch indexPath.item {
+        case RestaurantType.HanyangPlaza.rawValue:
+            type = .HanyangPlaza
+        case RestaurantType.HumanEcology.rawValue:
+            type = .HumanEcology
+        case RestaurantType.MaterialScience.rawValue:
+            type = .MaterialScience
+        case RestaurantType.ResidenceOne.rawValue:
+            type = .ResidenceOne
+        case RestaurantType.ResidenceTwo.rawValue:
+            type = .ResidenceTwo
+        case RestaurantType.HangwonPark.rawValue:
+            type = .HangwonPark
+        default:
+            print("error")
+        }
+        self.parent?.requestData()
     }
     
     

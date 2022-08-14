@@ -10,7 +10,8 @@ import UIKit
 class DietCollectionViewCell: UICollectionViewCell {
     
     private var menu: [String] = ["조식", "닭곰탕", "미트볼케찹조림", "청포묵김가루무침", "무말랭이고춧잎무침", "포기김치", "쌀밥"]
-
+    private var type: RestaurantType = .HumanEcology
+    
     static let identifier = "DietCollectionViewCell"
     
     lazy private var menuTable: UITableView = {
@@ -18,7 +19,15 @@ class DietCollectionViewCell: UICollectionViewCell {
         table.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.identifier)
         table.allowsSelectionDuringEditing = false
         table.separatorStyle = .none
+        table.isUserInteractionEnabled = false
         return table
+    }()
+    
+    lazy private var priceLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
+        label.text = "5500원"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -66,8 +75,10 @@ class DietCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate(menuTableConstraints)
     }
     
-    func configure(with model: [String]) {
-        menu = model
+    func configure(with model: MenuViewModel) {
+        menu = model.diet
+        type = model.type
+        
         DispatchQueue.main.async { [weak self] in
             self?.menuTable.reloadData()
         }
@@ -83,9 +94,41 @@ extension DietCollectionViewCell: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.identifier, for: indexPath)
         
-        cell.textLabel?.text = menu[indexPath.row]
-        cell.textLabel?.textAlignment = indexPath.row != 0 ? .center : .left
-        cell.textLabel?.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 20) : UIFont.systemFont(ofSize: 25, weight: .bold)
+        
+        var content = cell.defaultContentConfiguration()
+        content.text = menu[indexPath.row]
+        
+        content.textProperties.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 20) : UIFont.systemFont(ofSize: 25, weight: .bold)
+        content.textProperties.alignment = indexPath.row != 0 ? .center : .natural
+
+        switch type {
+        case .HumanEcology:
+            if content.text == "[Dam-A]" || content.text == "[Pangeos]" {
+                content.textProperties.alignment = .natural
+                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                content.secondaryText = "5500원"
+                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                content.prefersSideBySideTextAndSecondaryText = true
+                //
+            }
+        case .MaterialScience:
+            if content.text == "[정식]" || content.text == "[일품]" {
+                content.textProperties.alignment = .natural
+                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                content.secondaryText = "5500원"
+                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                content.prefersSideBySideTextAndSecondaryText = true
+
+            }
+        default:
+            if let text = content.text, text.contains("[") {
+                content.textProperties.alignment = .natural
+                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+            }
+        }
+
+        
+        cell.contentConfiguration = content
         return cell
     }
     
