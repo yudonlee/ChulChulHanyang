@@ -9,13 +9,9 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private let type = ["조식", "중식", "석식"]
-    private let menu: [String] = ["조식", "닭곰탕", "미트볼케찹조림", "청포묵김가루무침", "무말랭이고춧잎무침", "포기김치", "쌀밥"]
-
-    
+    lazy private var data: [[String]] = [[String]]()
     lazy private var datePartView: DateView = DateView()
     lazy private var restaurantSelectView: RestaurantListView = RestaurantListView()
-    
     
     lazy private var dietCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -30,8 +26,21 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
+        requestData()
         dietCollectionView.delegate = self
         dietCollectionView.dataSource = self
+        datePartView.setParentViewController(view: self)
+    }
+    
+    func requestData() {
+        
+        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: .HumanEcology) else {
+            return
+        }
+        data = crawledData
+        DispatchQueue.main.async { [weak self] in
+            self?.dietCollectionView.reloadData()
+        }
     }
     
     private func render() {
@@ -64,13 +73,12 @@ final class MainViewController: UIViewController {
         [datePartViewConstraints, restaurantSelectViewConstraints, dietCollectionViewConstraints].forEach { constraint in
             NSLayoutConstraint.activate(constraint)
         }
-        
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return type.count
+        return data.compactMap { $0 }.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,7 +87,7 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         cell.layer.cornerRadius = 22
-        cell.configure(with: menu)
+        cell.configure(with: data[indexPath.row])
         
         return cell
     }
@@ -89,7 +97,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 345, height: menu.count * 40 + 20)
+        return CGSize(width: 345, height: data[indexPath.row].count * 40 + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
