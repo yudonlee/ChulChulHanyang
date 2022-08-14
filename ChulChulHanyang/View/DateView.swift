@@ -8,31 +8,37 @@
 import UIKit
 
 class DateView: UIView {
+    
+    private var userDate: Date = Date()
 
-    private let leftChevronButton: UIButton = { button in
+    lazy private var leftChevronButton: UIButton = { button in
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30))
         button.setImage(UIImage(systemName: "chevron.left", withConfiguration: config), for: .normal)
+        button.addTarget(self, action: #selector(minusOneDayToCurrent), for: .touchUpInside)
         button.tintColor = .black
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 16)
         return button
     
     }(UIButton())
     
-    private let rightChevronButton: UIButton = { button in
+    lazy private var rightChevronButton: UIButton = { button in
         
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30))
         button.setImage(UIImage(systemName: "chevron.right", withConfiguration: config), for: .normal)
+        button.addTarget(self, action: #selector(addOneDayToCurrent), for: .touchUpInside)
         button.tintColor = .black
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 16)
         return button
     }(UIButton())
     
-    private let dateLabel: UILabel = { label in
-        label.text = Date().dateText
+    lazy private var dateLabel: UILabel = { label in
+        label.text = userDate.dateText
         label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         return label
     }(UILabel())
     
-    private let dayLabel: UILabel = { label in
-        label.text = Date().dayText
+    lazy private var dayLabel: UILabel = { label in
+        label.text = userDate.dayText
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }(UILabel())
@@ -73,6 +79,28 @@ class DateView: UIView {
             NSLayoutConstraint.activate(constraint)
         }
         
+    }
+    
+    private func setDateAndDayLabel() {
+        dateLabel.text = userDate.dateText
+        dayLabel.text = userDate.dayText
+        
+    }
+    
+    @objc func addOneDayToCurrent() {
+        guard let date = Calendar.current.date(byAdding: .day, value: 1, to: userDate) else {
+            return
+        }
+        userDate = date
+        setDateAndDayLabel()
+    }
+    
+    @objc func minusOneDayToCurrent() {
+        guard let date = Calendar.current.date(byAdding: .day, value: -1, to: userDate) else {
+            return
+        }
+        userDate = date
+        setDateAndDayLabel()
     }
     
 }
