@@ -25,8 +25,8 @@ final class MainViewController: UIViewController {
     
     private let emptyMenuInformation: UILabel = {
        let label = UILabel()
-        label.text = "해당 식당은 오늘 운영하지 않아요"
-        label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.text = "해당 식당은 오늘 운영하지 않아요😢"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.isHidden = true
         label.textAlignment = .center
         return label
@@ -58,6 +58,7 @@ final class MainViewController: UIViewController {
             self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
         }
     }
+    
     
     private func render() {
         self.view.backgroundColor = .backgroundGray
@@ -122,7 +123,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 345, height: data[indexPath.row].count * 40 + 20 + 10)
+        return CGSize(width: Int(UIScreen.screenWidth * 0.88), height: data[indexPath.row].count * 35 + 5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

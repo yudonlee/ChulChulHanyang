@@ -14,7 +14,7 @@ final class CrawlManager {
     
     private init() { }
     
-    let ramenInformation: [String] = ["분식", "라면", "2000원", "떡 or 만두 or 치즈 라면", "2300원", "떡 or 만두 or 치즈 라면 + 공깃밥", "2800원"]
+    let ramenInformation: [String] = ["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"]
     
     private func getRestaurantURL(type: Int, month: Int, day: Int, year: Int) -> String {
         let str = "\(URLConstants.baseURL)\(type)\(URLConstants.dateURL)\(day)\(URLConstants.yearURL) \(year)\(URLConstants.monthURL)\(month - 1)"
@@ -42,7 +42,10 @@ final class CrawlManager {
             try inbox.forEach { element in
                 var str = try element.text()
                 str.removeAll(where: { [","].contains($0) })
-                let convertedStrArray = str.components(separatedBy: " ").map { String($0) }
+                let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
+                    !element.contains("원")
+                }
+                
                 result.append(convertedStrArray)
             }
             
@@ -78,30 +81,13 @@ final class CrawlManager {
                 str = str.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
                 str.removeAll(where: { [","].contains($0) })
                 var convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    return !element.isEmpty && !(element.contains(":"))
+                    return !element.isEmpty && !(element.contains(":")) &&
+                    !(element.contains("원"))
                 }
                 
                 if convertedStrArray.contains("공통찬") {
-                    let firstIdx = convertedStrArray.lastIndex(of: "공통찬")
-                    let lastIdx = convertedStrArray.firstIndex(of: "*")
-                    guard let firstIdx = firstIdx, let lastIdx = lastIdx else {
-                        return
-                    }
-                    convertedStrArray = convertedStrArray[firstIdx...lastIdx - 1].map({ String($0) })
+                   return
                 }
-                
-//                if convertedStrArray.contains("라면") {
-//                    convertedStrArray.lastIndex(of: "+")
-//                    
-//                    
-//                    let firstRiceCake = convertedStrArray.firstIndex(of: "떡")
-//                    let lastRiceCake = convertedStrArray.firstIndex(of: "치즈")
-//                    
-//                    let firstCheese = convertedStrArray.firstIndex(of: "치즈")
-//                    let lastCheese = convertedStrArray.lastIndex(of: "치즈")
-//                    
-//                    convertedStrArray[]
-//                }
                 
                 result.append(convertedStrArray)
             }

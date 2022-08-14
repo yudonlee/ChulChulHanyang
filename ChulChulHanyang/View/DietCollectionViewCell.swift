@@ -9,8 +9,9 @@ import UIKit
 
 class DietCollectionViewCell: UICollectionViewCell {
     
-    private var menu: [String] = ["조식", "닭곰탕", "미트볼케찹조림", "청포묵김가루무침", "무말랭이고춧잎무침", "포기김치", "쌀밥"]
+    private var menu: [String] = []
     private var type: RestaurantType = .HumanEcology
+    private let price: [String: String] = ["[Dam-A]": "5500원", "[Pangeos]": "5500원", "[정식]": "5500원", "[일품]": "5500원", "[덮밥]": "4200원", "석식": "5500원"]
     
     static let identifier = "DietCollectionViewCell"
     
@@ -76,10 +77,10 @@ class DietCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: MenuViewModel) {
-        menu = model.diet
-        type = model.type
         
         DispatchQueue.main.async { [weak self] in
+            self?.menu = model.diet
+            self?.type = model.type
             self?.menuTable.reloadData()
         }
     }
@@ -96,38 +97,27 @@ extension DietCollectionViewCell: UITableViewDataSource {
         
         
         var content = cell.defaultContentConfiguration()
+        content.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         content.text = menu[indexPath.row]
+        content.textProperties.adjustsFontForContentSizeCategory = true
+        content.secondaryTextProperties.adjustsFontForContentSizeCategory = true
         
-        content.textProperties.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 20) : UIFont.systemFont(ofSize: 25, weight: .bold)
+        content.textProperties.font = indexPath.row != 0 ? UIFont.systemFont(ofSize: 16) : UIFont.systemFont(ofSize: 18, weight: .bold)
         content.textProperties.alignment = indexPath.row != 0 ? .center : .natural
 
-        switch type {
-        case .HumanEcology:
-            if content.text == "[Dam-A]" || content.text == "[Pangeos]" {
-                content.textProperties.alignment = .natural
-                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-                content.secondaryText = "5500원"
-                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        if indexPath.row == 0 {
+            if let text = content.text, let time = type.restaurantTime[text] {
+                content.secondaryText = time
+                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
                 content.prefersSideBySideTextAndSecondaryText = true
-                //
-            }
-        case .MaterialScience:
-            if content.text == "[정식]" || content.text == "[일품]" {
-                content.textProperties.alignment = .natural
-                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-                content.secondaryText = "5500원"
-                content.secondaryTextProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-                content.prefersSideBySideTextAndSecondaryText = true
-
-            }
-        default:
-            if let text = content.text, text.contains("[") {
-                content.textProperties.alignment = .natural
-                content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
             }
         }
-
         
+        if let text = content.text, text.contains("[") {
+            content.textProperties.alignment = .natural
+            content.textProperties.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        }
+
         cell.contentConfiguration = content
         return cell
     }
@@ -138,9 +128,9 @@ extension DietCollectionViewCell: UITableViewDataSource {
 extension DietCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row != 0 {
-            return 40
+            return 35
         }
-        return 50
+        return 40
     }
 }
 
