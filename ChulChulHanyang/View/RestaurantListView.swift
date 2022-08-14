@@ -90,7 +90,7 @@ extension RestaurantListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.identifier, for: indexPath) as? RestaurantCollectionViewCell else {
-            assert(false, "Wrong Cell")
+            return UICollectionViewCell()
         }
         
         cell.configure(with: restaurantName[indexPath.item])
