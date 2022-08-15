@@ -72,7 +72,7 @@ final class CrawlManager {
                 
                 
                 var str = try element.text()
-                if str.contains("라면") {
+                if str.contains("떡 or 만두 or 치즈 라면") {
                     result.append(ramenInformation)
                     return
                 }
