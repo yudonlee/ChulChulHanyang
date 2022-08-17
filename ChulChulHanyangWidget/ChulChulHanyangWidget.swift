@@ -19,19 +19,15 @@ struct Provider: IntentTimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffSet in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffSet, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
+        
+        let entry = SimpleEntry(date: Date(), configuration: configuration)
+        let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())
+        let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))
         completion(timeline)
+        
+        
+        
     }
 }
 
@@ -42,85 +38,105 @@ struct SimpleEntry: TimelineEntry {
 }
 
 
-struct ChulChulHanyangWidgetEntryView : View {
-    @Environment(\.widgetFamily) var family: WidgetFamily
-    
-    var entry: Provider.Entry
-    var menu: [String]  {
-        guard let data = CrawlManager.shared.crawlRestaurantMenu(date: Date(), restaurantType: .HumanEcology) else {
-            return [String]()
-        }
-        
-        var mealData = data.filter { str in
-            str.contains("중식")
-        }.flatMap({ $0 })
-
-        guard let pangeosIndex = mealData.firstIndex(of: "[Pangeos]") else { return mealData }
-
-//        UserDefaults.setVale
-        let range = pangeosIndex..<mealData.endIndex
-        mealData.removeSubrange(range)
-        return mealData
-    }
-        
-    var body: some View {
-        widgetBody()
-    }
-    
-    @ViewBuilder
-    func widgetBody() -> some View {
-        switch family {
-        case .systemSmall:
-            HStack{
-                VStack{
-                    ForEach(menu, id: \.self) { food in
-                        Text(food).font(.system(size: 13, weight: .medium))
-                    }
-                }
-            }
-        case .systemMedium:
-            HStack{
-                VStack{
-                    ForEach(menu, id: \.self) { food in
-                        Text(food).font(.system(size: 13, weight: .medium))
-                    }
-                }
-                VStack{
-                    ForEach(menu, id: \.self) { food in
-                        Text(food).font(.system(size: 13, weight: .medium))
-                    }
-                }
-                VStack{
-                    ForEach(menu, id: \.self) { food in
-                        Text(food).font(.system(size: 13, weight: .medium))
-                    }
-                }
-            }
-        default:
-            EmptyView()
-            
-        }
-    }
-}
 
 
 @main
-struct ChulChulHanyangWidget: Widget {
-    let kind: String = "ChulChulHanyangWidget"
-
-    var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            ChulChulHanyangWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+struct ChulChulHanyangWidget: WidgetBundle {
+    var body: some Widget {
+        HumanEcologyWidget()
+        MaterialScienceWidget()
+        ResidenceOneWidget()
+        ResidenceTwoWidget()
+        ChulChulHanyangWidgetOthers().body
     }
 }
 
-struct ChulChulHanyangWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        ChulChulHanyangWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+struct ChulChulHanyangWidgetOthers: WidgetBundle {
+    var body: some Widget {
+        HanyangPlazaWidget()
+        HangwonParkWidget()
+    }
+}
+
+
+
+
+
+struct HumanEcologyWidget: Widget {
+    let kind: String = "HumanEcologyWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .HumanEcology)
+        }
+        .configurationDisplayName("생과대 교직원 식당")
+        .description("해당 메뉴들은 시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 이때 생과대에서 중식은 두개의 식당이 제공되는데, 이중 Dam-A식당만이 위젯에 나타납니다.")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+struct MaterialScienceWidget: Widget {
+    let kind: String = "MaterialScienceWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .MaterialScience)
+        }
+        .configurationDisplayName("신소재 교직원 식당")
+        .description("해당 메뉴들은 시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 이때 신소재에서 중식은 두개의 식당이 제공되는데, 이중 정식식당 만이 위젯에 나타납니다.")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+struct ResidenceOneWidget: Widget {
+    let kind: String = "ResidenceOneWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceOne)
+        }
+        .configurationDisplayName("제 1생활관 식당 위젯")
+        .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다.")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+struct ResidenceTwoWidget: Widget {
+    let kind: String = "ResidenceTwoWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceTwo)
+        }
+        .configurationDisplayName("제 2생활관 식당 위젯")
+        .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다.")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+
+struct HanyangPlazaWidget: Widget {
+    let kind: String = "HanyangPlazaWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .HanyangPlaza)
+        }
+        .configurationDisplayName("학생 식당")
+        .description("한플 학생식당에선 라면을 제외한 모든 메뉴가 보여집니다.")
+        .supportedFamilies([.systemSmall])
+    }
+}
+
+struct HangwonParkWidget: Widget {
+    let kind: String = "HangwonParkWidget"
+
+    var body: some WidgetConfiguration {
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+            ChulChulHanyangWidgetEntryView(entry: entry, type: .HangwonPark)
+        }
+        .configurationDisplayName("행원파크 식당")
+        .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 중식 메뉴에선 두개의 식당 중 코너 A에서 제공되는 메뉴만 보여집니다.")
+        .supportedFamilies([.systemSmall])
     }
 }

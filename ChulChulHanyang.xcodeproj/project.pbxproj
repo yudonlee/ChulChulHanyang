@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
+		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76564A9928A2AA8100C07A99 /* MenuViewModel.swift */; };
 		767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB4289FE428006DF76F /* AppDelegate.swift */; };
 		767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB6289FE428006DF76F /* SceneDelegate.swift */; };
@@ -35,8 +37,7 @@
 		7693537528AB2D97007F2F81 /* RestaurantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */; };
 		7693537628AB2DAD007F2F81 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD2289FF537006DF76F /* Date+Extension.swift */; };
 		7693537728AB2DB5007F2F81 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD5289FF723006DF76F /* DateFormatter.swift */; };
-		7693537C28ABC67F007F2F81 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693537A28ABC660007F2F81 /* WidgetView.swift */; };
-		7693537D28ABC691007F2F81 /* WidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693537828ABC644007F2F81 /* WidgetViewModel.swift */; };
+		7693537C28ABC67F007F2F81 /* ChulChulHanyangWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */; };
 		76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */; };
 		76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */; };
 		76EC20FB28A1519D00FDD319 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 76EC20FA28A1519D00FDD319 /* SwiftSoup */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
 		76564A9928A2AA8100C07A99 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		767D1CB1289FE428006DF76F /* ChulChulHanyang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChulChulHanyang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767D1CB4289FE428006DF76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +95,7 @@
 		7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ChulChulHanyangWidget.intentdefinition; sourceTree = "<group>"; };
 		7693536528AB2ADE007F2F81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7693536728AB2ADE007F2F81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7693537828ABC644007F2F81 /* WidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewModel.swift; sourceTree = "<group>"; };
-		7693537A28ABC660007F2F81 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangWidgetEntryView.swift; sourceTree = "<group>"; };
 		76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantType.swift; sourceTree = "<group>"; };
 		76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		76EC20F728A14E6800FDD319 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -123,6 +124,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7622395A28ACCA30006F75F0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7622395B28ACCA38006F75F0 /* ParsingManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		767D1CA8289FE428006DF76F = {
 			isa = PBXGroup;
 			children = (
@@ -237,8 +246,8 @@
 		7693536128AB2ADD007F2F81 /* ChulChulHanyangWidget */ = {
 			isa = PBXGroup;
 			children = (
-				7693537828ABC644007F2F81 /* WidgetViewModel.swift */,
-				7693537A28ABC660007F2F81 /* WidgetView.swift */,
+				7622395A28ACCA30006F75F0 /* Manager */,
+				7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */,
 				7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */,
 				7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */,
 				7693536528AB2ADE007F2F81 /* Assets.xcassets */,
@@ -368,6 +377,7 @@
 			files = (
 				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
 				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
+				7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
@@ -391,10 +401,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7693537D28ABC691007F2F81 /* WidgetViewModel.swift in Sources */,
 				7693537728AB2DB5007F2F81 /* DateFormatter.swift in Sources */,
 				7693537628AB2DAD007F2F81 /* Date+Extension.swift in Sources */,
-				7693537C28ABC67F007F2F81 /* WidgetView.swift in Sources */,
+				7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */,
+				7693537C28ABC67F007F2F81 /* ChulChulHanyangWidgetEntryView.swift in Sources */,
 				7693536328AB2ADD007F2F81 /* ChulChulHanyangWidget.swift in Sources */,
 				7693537428AB2D6A007F2F81 /* CrawlManager.swift in Sources */,
 				7693537528AB2D97007F2F81 /* RestaurantType.swift in Sources */,
@@ -617,7 +627,7 @@
 				INFOPLIST_FILE = ChulChulHanyangWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ChulChulHanyangWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -645,7 +655,7 @@
 				INFOPLIST_FILE = ChulChulHanyangWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ChulChulHanyangWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
