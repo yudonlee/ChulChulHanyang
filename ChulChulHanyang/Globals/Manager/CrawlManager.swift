@@ -8,11 +8,19 @@
 import SwiftSoup
 import Foundation
 
+
+enum APIError: Error {
+    case failedTogetData
+    
+}
+
 final class CrawlManager {
     
     static let shared = CrawlManager()
     
-    private init() { }
+    private init() {
+//        UserDefaults.standard.set(["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"], forKey: "Data")
+    }
     
     let ramenInformation: [String] = ["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"]
     
@@ -98,5 +106,44 @@ final class CrawlManager {
         }
         return result
     }
+    
+    func crawlRestaurantMenuAsyncAndURL(date: Date, restaurantType: RestaurantType, completion: @escaping (Result<[[String]], Error>) -> Void)  {
+        
+        let linkString = getRestaurantURL(type: restaurantType.link, month: date.month, day: date.day, year: date.year)
+        
+        guard let encodedStr = linkString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encodedStr) else {
+            return
+        }
+        
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            var result = [[String]]()
+            guard let data = data, let html = String(data: data, encoding: .utf8) else {
+                return
+            }
+            do {
+                let doc: Document = try SwiftSoup.parse(html)
+                
+                let inbox:Elements = try doc.select(".in-box") //.은 클래스
+                try inbox.forEach { element in
+                    var str = try element.text()
+                    str.removeAll(where: { [","].contains($0) })
+                    let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
+                        !element.contains("00원")
+                    }
+                    
+                    result.append(convertedStrArray)
+                }
+                completion(.success(result))
+            }  catch {
+                print("error")
+                completion(.failure(APIError.failedTogetData))
+            }
+        }
+        task.resume()
+        
+        
+    }
+    
 }
 

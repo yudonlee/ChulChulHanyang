@@ -56,13 +56,23 @@ final class MainViewController: UIViewController {
     
     func requestData() {
         
-        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: restaurantSelectView.typeData()) else {
-            return
-        }
-        
-        data = crawledData.map({ strArray in
-            strArray.filter { str in
-                !["-"].contains(str)
+        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: datePartView.userDateData(),  restaurantType: type, completion: { result in
+            switch result {
+            case .success(let crawledData):
+                let parsed = crawledData.map({ strArray in
+                    strArray.filter { str in
+                        !["-"].contains(str)
+                    }
+                })
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.data = parsed
+                    self?.dietCollectionView.reloadData()
+                    self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         })
     }
