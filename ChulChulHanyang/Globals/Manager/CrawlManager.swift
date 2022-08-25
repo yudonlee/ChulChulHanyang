@@ -8,12 +8,6 @@
 import SwiftSoup
 import Foundation
 
-
-enum APIError: Error {
-    case failedTogetData
-    
-}
-
 final class CrawlManager {
     
     static let shared = CrawlManager()
@@ -42,7 +36,7 @@ final class CrawlManager {
             
             let inbox:Elements = try doc.select(".in-box") //.은 클래스
             try inbox.forEach { element in
-                var str = try element.text()
+                let str = try element.text()
                 
                 let convertedStrArray = self.processDataByType(str, type: restaurantType)
                 if !convertedStrArray.isEmpty {
@@ -52,7 +46,7 @@ final class CrawlManager {
             }
             
         } catch {
-            print("error")
+            print("\(APIError.failedTogetData.localizedDescription)")
         }
         
         return result
@@ -86,7 +80,6 @@ final class CrawlManager {
                 }
                 completion(.success(result))
             }  catch {
-                print("error")
                 completion(.failure(APIError.failedTogetData))
             }
         }
@@ -112,7 +105,7 @@ final class CrawlManager {
 //                학생식당 영어 번역 메뉴 삭제
             removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
             removedData.removeAll(where: { [","].contains($0) })
-            var convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
+            let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
                 return !element.isEmpty && !(element.contains(":")) &&
                 !(element.contains("00원"))
             }
