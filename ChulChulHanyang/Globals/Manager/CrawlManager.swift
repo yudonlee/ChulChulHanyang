@@ -35,10 +35,6 @@ final class CrawlManager {
             return nil
         }
         
-        if restaurantType == .HanyangPlaza {
-            return crawlHanyangPlaza(url: url)
-        }
-        
         var result = [[String]]()
         do {
             let html = try String(contentsOf: url)
@@ -47,62 +43,20 @@ final class CrawlManager {
             let inbox:Elements = try doc.select(".in-box") //.은 클래스
             try inbox.forEach { element in
                 var str = try element.text()
-                str.removeAll(where: { [","].contains($0) })
-                let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    !element.contains("00원")
+                
+                let convertedStrArray = self.processDataByType(str, type: restaurantType)
+                if !convertedStrArray.isEmpty {
+                    result.append(convertedStrArray)
                 }
                 
-                result.append(convertedStrArray)
             }
             
-        } catch Exception.Error(let type, let message) {
-            print("Message: \(message)")
         } catch {
             print("error")
         }
         
         return result
         
-    }
-    
-    func crawlHanyangPlaza(url: URL) -> [[String]]? {
-        
-        var result = [[String]]()
-        
-        do {
-            let html = try String(contentsOf: url)
-            let doc: Document = try SwiftSoup.parse(html)
-            
-            let inbox:Elements = try doc.select(".in-box") //.은 클래스
-            try inbox.forEach { element in
-                
-                
-                var str = try element.text()
-                if str.contains("떡 or 만두 or 치즈 라면") {
-                    result.append(ramenInformation)
-                    return
-                }
-                
-//                학생식당 영어 번역 메뉴 삭제
-                str = str.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
-                str.removeAll(where: { [","].contains($0) })
-                var convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    return !element.isEmpty && !(element.contains(":")) &&
-                    !(element.contains("00원"))
-                }
-                
-                if convertedStrArray.contains("공통찬") {
-                   return
-                }
-                
-                result.append(convertedStrArray)
-            }
-        } catch Exception.Error(let type, let message) {
-            print("Message: \(message)")
-        } catch {
-            print("error")
-        }
-        return result
     }
     
     func crawlRestaurantMenuAsyncAndURL(date: Date, restaurantType: RestaurantType, completion: @escaping (Result<[[String]], Error>) -> Void)  {
@@ -122,9 +76,8 @@ final class CrawlManager {
                 let doc: Document = try SwiftSoup.parse(html)
                 
                 let inbox:Elements = try doc.select(".in-box") //.은 클래스
-                
+
                 try inbox.forEach { element in
-                    
                     let str = try element.text()
                     let convertedStrArray = self.processDataByType(str, type: restaurantType)
                     if !convertedStrArray.isEmpty {
