@@ -122,14 +122,14 @@ final class CrawlManager {
                 let doc: Document = try SwiftSoup.parse(html)
                 
                 let inbox:Elements = try doc.select(".in-box") //.은 클래스
+                
                 try inbox.forEach { element in
-                    var str = try element.text()
-                    str.removeAll(where: { [","].contains($0) })
-                    let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                        !element.contains("00원")
-                    }
                     
-                    result.append(convertedStrArray)
+                    let str = try element.text()
+                    let convertedStrArray = self.processDataByType(str, type: restaurantType)
+                    if !convertedStrArray.isEmpty {
+                        result.append(convertedStrArray)
+                    }
                 }
                 completion(.success(result))
             }  catch {
@@ -139,6 +139,36 @@ final class CrawlManager {
         }
         task.resume()
         
+    }
+    
+    private func processDataByType(_ str: String, type: RestaurantType) -> [String] {
+    
+        var removedData = str
+        
+        if type != .HanyangPlaza {
+            removedData.removeAll(where: { [","].contains($0) })
+            let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
+                !element.contains("00원")
+            }
+            return convertedStrArray
+        } else {
+            if str.contains("떡 or 만두 or 치즈 라면") {
+                return ramenInformation
+            }
+            
+//                학생식당 영어 번역 메뉴 삭제
+            removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
+            removedData.removeAll(where: { [","].contains($0) })
+            var convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
+                return !element.isEmpty && !(element.contains(":")) &&
+                !(element.contains("00원"))
+            }
+            
+            if convertedStrArray.contains("공통찬") {
+                return []
+            }
+            return convertedStrArray
+        }
         
     }
     
