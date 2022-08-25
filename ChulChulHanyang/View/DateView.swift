@@ -8,11 +8,16 @@
 import UIKit
 import Combine
 
+protocol DateViewDelegate: AnyObject {
+    func dateViewValueChange(_ date: Date)
+}
+
+
 class DateView: UIView {
     
     private var userDate: Date = Date()
     
-    private var parent: MainViewController?
+    weak var delegate: DateViewDelegate?
     
     lazy private var leftChevronButton: UIButton = { button in
         let config = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 30))
@@ -96,21 +101,13 @@ class DateView: UIView {
 
 extension DateView {
     
-    func userDateData() -> Date {
-        return userDate
-    }
-    
-    func setParentViewController(view: MainViewController) {
-        parent = view
-    }
-    
     @objc private func addOneDayToCurrent() {
         guard let date = Calendar.current.date(byAdding: .day, value: 1, to: userDate) else {
             return
         }
         userDate = date
         setDateAndDayLabel()
-        parent?.requestData()
+        self.delegate?.dateViewValueChange(userDate)
     }
     
     @objc private func minusOneDayToCurrent() {
@@ -119,14 +116,14 @@ extension DateView {
         }
         userDate = date
         setDateAndDayLabel()
-        parent?.requestData()
+        self.delegate?.dateViewValueChange(userDate)
     }
     
     @objc private func dayChanged(_ notification: Notification) {
         
         userDate = Date()
         setDateAndDayLabel()
-        parent?.requestData()
+        self.delegate?.dateViewValueChange(userDate)
     }
     
 }
