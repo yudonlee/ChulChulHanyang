@@ -16,6 +16,23 @@ enum RestaurantType: Int {
     case HanyangPlaza = 4
     case HangwonPark = 5
     
+    var name: String {
+        switch self {
+        case .HanyangPlaza:
+            return "한플식당"
+        case .HumanEcology:
+            return "생과대"
+        case .MaterialScience:
+            return "신소재"
+        case .ResidenceOne:
+            return "제1생"
+        case .ResidenceTwo:
+            return "제2생"
+        case .HangwonPark:
+            return "행원파크"
+        }
+    }
+    
     var link: Int {
         switch self {
         case .HanyangPlaza:

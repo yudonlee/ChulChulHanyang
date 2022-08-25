@@ -29,4 +29,7 @@ extension Date {
         return Calendar.current.component(.day, from: self)
     }
     
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
 }

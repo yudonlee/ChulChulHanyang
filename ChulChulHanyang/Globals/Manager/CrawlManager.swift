@@ -43,7 +43,7 @@ final class CrawlManager {
                 var str = try element.text()
                 str.removeAll(where: { [","].contains($0) })
                 let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    !element.contains("원")
+                    !element.contains("00원")
                 }
                 
                 result.append(convertedStrArray)
@@ -82,7 +82,7 @@ final class CrawlManager {
                 str.removeAll(where: { [","].contains($0) })
                 var convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
                     return !element.isEmpty && !(element.contains(":")) &&
-                    !(element.contains("원"))
+                    !(element.contains("00원"))
                 }
                 
                 if convertedStrArray.contains("공통찬") {
