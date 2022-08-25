@@ -18,9 +18,7 @@ final class CrawlManager {
     
     static let shared = CrawlManager()
     
-    private init() {
-//        UserDefaults.standard.set(["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"], forKey: "Data")
-    }
+    private init() {}
     
     let ramenInformation: [String] = ["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"]
     
@@ -114,7 +112,6 @@ final class CrawlManager {
         guard let encodedStr = linkString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encodedStr) else {
             return
         }
-        
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             var result = [[String]]()
