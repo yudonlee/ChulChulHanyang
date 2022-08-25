@@ -51,35 +51,47 @@ struct ParsingManager {
                 str.contains(getTimeStamp)
             }.flatMap({ $0 })
             
-            guard let pangeosIndex = result.firstIndex(of: "[Pangeos]") else { return result }
-            let range = pangeosIndex..<result.endIndex
-            result.removeSubrange(range)
+            if let damAIndex = result.firstIndex(of: "[Dam-A]"),
+               let pangeosIndex = result.firstIndex(of: "[Pangeos]") {
+                
+                let range = pangeosIndex..<result.endIndex
+                result.removeSubrange(range)
+            }
+            
             
         case .MaterialScience:
             result = data.filter { str in
                 str.contains(getTimeStamp)
             }.flatMap({ $0 })
             
-            guard let ilpoomIndex = result.firstIndex(of: "[일품]") else { return result }
-            let range = ilpoomIndex..<result.endIndex
-            result.removeSubrange(range)
+            if let jeongsikIndex = result.firstIndex(of: "[정식]"),
+               let ilpoomIndex = result.firstIndex(of: "[일품]") {
+                
+                let range = ilpoomIndex..<result.endIndex
+                result.removeSubrange(range)
+            }
             
         case .ResidenceOne, .ResidenceTwo:
             result = data.filter { str in
                 str.contains(getTimeStamp)
             }.flatMap({ $0 })
-            result = result.filter { str in
-                !str.contains("-")
-            }
         case .HangwonPark:
             var result = data.filter { str in
                 str.contains(getTimeStamp)
             }.flatMap({ $0 })
-            guard let ilpoomIndex = result.firstIndex(of: "[코너 B]") else { return result }
-            let range = ilpoomIndex..<result.endIndex
-            result.removeSubrange(range)
+            
+            if let cornerAIndex = result.firstIndex(of: "[코너 A]"),
+               let cornerBIndex = result.firstIndex(of: "[코너 B]") {
+                
+                let range = cornerBIndex..<result.endIndex
+                result.removeSubrange(range)
+            }
+            
         }
         
+        result = result.filter { str in
+            return str != "-"
+        }
         return result
     }
 }
