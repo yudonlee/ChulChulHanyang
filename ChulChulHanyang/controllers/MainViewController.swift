@@ -39,7 +39,7 @@ final class MainViewController: UIViewController {
     
     private let emptyMenuInformation: UILabel = {
        let label = UILabel()
-        label.text = "해당 식당은 오늘 운영하지 않아요😢"
+        label.text = "등록된 정보를 찾지 못했어요😢"
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.isHidden = true
         label.textAlignment = .center

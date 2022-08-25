@@ -52,7 +52,7 @@ struct WidgetSmallView: View {
                     Text(food).font(.system(size: 13, weight: .medium))
                 }
             } else {
-                Text("해당 식당은 오늘 운영하지 않아요😢").font(.system(size: 13, weight: .medium))
+                Text("등록된 정보를 찾지 못했어요😢").font(.system(size: 13, weight: .medium))
             }
         }
     }
