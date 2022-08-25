@@ -10,8 +10,22 @@ import UIKit
 final class MainViewController: UIViewController {
     
     lazy private var data: [[String]] = [[String]]()
-    lazy private var datePartView: DateView = DateView()
-    lazy private var restaurantSelectView: RestaurantListView = RestaurantListView()
+    
+    lazy private var datePartView: DateView = {
+        let dateView = DateView()
+        dateView.delegate = self
+        return dateView
+    }()
+    
+    lazy private var restaurantSelectView: RestaurantListView = {
+        let view = RestaurantListView()
+        view.delegate = self
+        return view
+    }()
+    
+    private var type: RestaurantType = .HumanEcology
+    private var date: Date = Date()
+    
     
     lazy private var dietCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,8 +51,6 @@ final class MainViewController: UIViewController {
         render()
         dietCollectionView.delegate = self
         dietCollectionView.dataSource = self
-        datePartView.setParentViewController(view: self)
-        restaurantSelectView.setParentViewController(view: self)
         requestData()
     }
     
@@ -53,10 +65,6 @@ final class MainViewController: UIViewController {
                 !["-"].contains(str)
             }
         })
-        DispatchQueue.main.async { [weak self] in
-            self?.dietCollectionView.reloadData()
-            self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
-        }
     }
     
     
@@ -132,3 +140,20 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
+
+extension MainViewController: RestaurantCollectionViewCellDelegate {
+    
+    func restaurantCollectionViewCellTapped(_ type: RestaurantType) {
+        self.type = type
+        requestData()
+    }
+    
+}
+
+extension MainViewController: DateViewDelegate {
+    func dateViewValueChange(_ date: Date) {
+        self.date = date
+        requestData()
+    }
+    
+}

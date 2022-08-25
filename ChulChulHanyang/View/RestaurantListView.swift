@@ -7,10 +7,17 @@
 
 import UIKit
 
+
+protocol RestaurantCollectionViewCellDelegate: AnyObject {
+    func restaurantCollectionViewCellTapped(_ type: RestaurantType)
+}
+
 final class RestaurantListView: UIView {
     
+    weak var delegate: RestaurantCollectionViewCellDelegate?
+    
     private let restaurantName = ["생과대", "신소재", "제1생", "제2생", "학생식당", "행원파크"]
-    private var parent: MainViewController?
+        
     private var type: RestaurantType = .HumanEcology
     
     private enum Size {
@@ -72,10 +79,6 @@ final class RestaurantListView: UIView {
         NSLayoutConstraint.activate(listCollectionViewConstraints)
     }
     
-    func setParentViewController(view: MainViewController) {
-        parent = view
-    }
-    
     func typeData() -> RestaurantType {
         return type
     }
@@ -119,9 +122,9 @@ extension RestaurantListView: UICollectionViewDelegateFlowLayout {
         default:
             print("error")
         }
-        self.parent?.requestData()
+        self.delegate?.restaurantCollectionViewCellTapped(type)
+        
     }
-    
     
 }
 
