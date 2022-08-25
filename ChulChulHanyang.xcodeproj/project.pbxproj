@@ -11,6 +11,7 @@
 		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		762BB6F628B785A90072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
 		762BB6F728B785DB0072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
+		762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6FD28B7A1F90072C317 /* LoadingService.swift */; };
 		76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76564A9928A2AA8100C07A99 /* MenuViewModel.swift */; };
 		767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB4289FE428006DF76F /* AppDelegate.swift */; };
 		767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB6289FE428006DF76F /* SceneDelegate.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
 		762BB6F528B785A90072C317 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		762BB6FD28B7A1F90072C317 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		76564A9928A2AA8100C07A99 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		767D1CB1289FE428006DF76F /* ChulChulHanyang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChulChulHanyang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767D1CB4289FE428006DF76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				767D1CD5289FF723006DF76F /* DateFormatter.swift */,
 				76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */,
 				762BB6F528B785A90072C317 /* APIError.swift */,
+				762BB6FD28B7A1F90072C317 /* LoadingService.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
+				762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */,
 				767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */,
 				767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */,
 				767D1CCD289FE90C006DF76F /* DateView.swift in Sources */,

@@ -55,7 +55,7 @@ final class MainViewController: UIViewController {
     }
     
     func requestData() {
-        
+        LoadingService.showLoading()
         CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { result in
             switch result {
             case .success(let crawledData):
@@ -64,7 +64,7 @@ final class MainViewController: UIViewController {
                         !["-"].contains(str)
                     }
                 })
-                
+                LoadingService.hideLoading()
                 DispatchQueue.main.async { [weak self] in
                     self?.data = parsed
                     self?.dietCollectionView.reloadData()
