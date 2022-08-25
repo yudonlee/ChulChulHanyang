@@ -56,7 +56,7 @@ final class MainViewController: UIViewController {
     
     func requestData() {
         
-        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: datePartView.userDateData(),  restaurantType: type, completion: { result in
+        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { result in
             switch result {
             case .success(let crawledData):
                 let parsed = crawledData.map({ strArray in
@@ -130,7 +130,7 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         cell.layer.cornerRadius = 22
-        let model = MenuViewModel(diet: data[indexPath.row], type: restaurantSelectView.typeData())
+        let model = MenuViewModel(diet: data[indexPath.row], type: type)
         cell.configure(with: model)
         
         return cell

@@ -79,10 +79,6 @@ final class RestaurantListView: UIView {
         NSLayoutConstraint.activate(listCollectionViewConstraints)
     }
     
-    func typeData() -> RestaurantType {
-        return type
-    }
-    
 }
 
 // MARK: - UICollectionViewDataSource

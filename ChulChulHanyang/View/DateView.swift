@@ -101,10 +101,6 @@ class DateView: UIView {
 
 extension DateView {
     
-    func userDateData() -> Date {
-        return userDate
-    }
-    
     @objc private func addOneDayToCurrent() {
         guard let date = Calendar.current.date(byAdding: .day, value: 1, to: userDate) else {
             return
