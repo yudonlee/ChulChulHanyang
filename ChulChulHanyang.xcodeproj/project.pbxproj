@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */; };
 		7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		762BB6F628B785A90072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyConstant.swift; sourceTree = "<group>"; };
 		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
 		762BB6F528B785A90072C317 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		762BB6FD28B7A1F90072C317 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */,
 				762BB6F528B785A90072C317 /* APIError.swift */,
 				762BB6FD28B7A1F90072C317 /* LoadingService.swift */,
+				7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */,
 				76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */,
+				7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */,
 				762BB6F628B785A90072C317 /* APIError.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
 				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
