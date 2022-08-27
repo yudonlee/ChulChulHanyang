@@ -55,26 +55,35 @@ final class MainViewController: UIViewController {
     }
     
     func requestData() {
-        LoadingService.showLoading()
-        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { result in
-            switch result {
-            case .success(let crawledData):
-                let parsed = crawledData.map({ strArray in
-                    strArray.filter { str in
-                        !["-"].contains(str)
-                    }
-                })
-                LoadingService.hideLoading()
-                DispatchQueue.main.async { [weak self] in
-                    self?.data = parsed
-                    self?.dietCollectionView.reloadData()
-                    self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
+        if let data = UserDefaults.standard.array(forKey: "\(date.keyText)\(type.name)") as? [[String]], date.lessThanSevenDays() {
+            DispatchQueue.main.async { [weak self] in
+                self?.data = data
+                self?.dietCollectionView.reloadData()
+                self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
             }
-        })
+        } else {
+            LoadingService.showLoading()
+            CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { [self] result in
+                switch result {
+                case .success(let crawledData):
+                    let parsed = crawledData.map({ strArray in
+                        strArray.filter { str in
+                            !["-"].contains(str)
+                        }
+                    })
+                    UserDefaults.standard.set(parsed, forKey: "\(self.date.keyText)\(self.type.name)")
+                    LoadingService.hideLoading()
+                    DispatchQueue.main.async { [weak self] in
+                        self?.data = parsed
+                        self?.dietCollectionView.reloadData()
+                        self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            })
+        }
     }
     
     
