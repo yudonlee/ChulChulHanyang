@@ -12,7 +12,7 @@ final class DateFormatterLiteral {
     static let yearDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "YYYYMMDD"
+        formatter.dateFormat = "YYYYMMdd"
         return formatter
     }()
     

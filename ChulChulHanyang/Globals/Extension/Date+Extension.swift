@@ -21,6 +21,15 @@ extension Date {
         return DateFormatterLiteral.dayDateFormatter.string(from: self)
     }
     
+    var sevenDaysBeforeText: String {
+        
+        guard let sevenDaysBefore = Calendar.current.date(byAdding: .day, value: -7, to: self) else {
+            return ""
+        }
+        return sevenDaysBefore.keyText
+        
+    }
+    
     var year: Int {
         return Calendar.current.component(.year, from: self)
     }

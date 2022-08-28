@@ -61,6 +61,7 @@ final class MainViewController: UIViewController {
                 self?.dietCollectionView.reloadData()
                 self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
             }
+            UserDefaults.standard.removeObject(forKey: "\(self.date.sevenDaysBeforeText)\(self.type.name)")
         } else {
             LoadingService.showLoading()
             CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { [self] result in
@@ -72,6 +73,7 @@ final class MainViewController: UIViewController {
                         }
                     })
                     UserDefaults.standard.set(parsed, forKey: "\(self.date.keyText)\(self.type.name)")
+                    UserDefaults.standard.removeObject(forKey: "\(self.date.sevenDaysBeforeText)\(self.type.name)")
                     LoadingService.hideLoading()
                     DispatchQueue.main.async { [weak self] in
                         self?.data = parsed
@@ -81,9 +83,15 @@ final class MainViewController: UIViewController {
                     
                 case .failure(let error):
                     print(error.localizedDescription)
+                    LoadingService.hideLoading()
                 }
             })
         }
+        
+        guard let x = getSizeOfUserDefaults() else {
+            return
+        }
+        print(x)
     }
     
     
@@ -175,4 +183,20 @@ extension MainViewController: DateViewDelegate {
         requestData()
     }
     
+}
+
+
+func getSizeOfUserDefaults() -> Int? {
+    guard let libraryDir = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
+        return nil
+    }
+
+    guard let bundleIdentifier = Bundle.main.bundleIdentifier else {
+        return nil
+    }
+
+    let filepath = "\(libraryDir)/Preferences/\(bundleIdentifier).plist"
+    let filesize = try? FileManager.default.attributesOfItem(atPath: filepath)
+    let retVal = filesize?[FileAttributeKey.size]
+    return retVal as? Int
 }
