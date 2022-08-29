@@ -91,10 +91,16 @@ final class CrawlManager {
     
         var removedData = str
         
+//        영어메뉴 삭제 
+        if type == .HanyangPlaza || type == .ResidenceTwo {
+            removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
+        }
+        
         if type != .HanyangPlaza {
+            
             removedData.removeAll(where: { [","].contains($0) })
             let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
-                !element.contains("00원")
+                !element.contains("00원") && !element.isEmpty
             }
             return convertedStrArray
         } else {
@@ -102,8 +108,6 @@ final class CrawlManager {
                 return ramenInformation
             }
             
-//                학생식당 영어 번역 메뉴 삭제
-            removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
             removedData.removeAll(where: { [","].contains($0) })
             let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
                 return !element.isEmpty && !(element.contains(":")) &&
