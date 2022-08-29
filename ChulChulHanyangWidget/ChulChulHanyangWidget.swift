@@ -10,24 +10,43 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    let type: RestaurantType
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), data: [])
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
+        ParsingManager.parsingAsync(type: type) { result in
+            switch result {
+            case .success(let data):
+                let entry = SimpleEntry(date: Date(), configuration: configuration, data: data)
+                completion(entry)
+            case .failure(let error):
+                let entry = SimpleEntry(date: Date(), configuration: configuration, data: [])
+                completion(entry)
+            }
+        }
+        
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())
-        let timeline = Timeline(entries: [entry], policy: .after(nextUpdate!))
-        completion(timeline)
+        let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
         
-        
-        
+        ParsingManager.parsingAsync(type: type) { result in
+            switch result {
+            case .success(let data):
+                let entry = SimpleEntry(date: Date(), configuration: configuration, data: data)
+                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
+                completion(timeline)
+            case .failure(let error):
+                let entry = SimpleEntry(date: Date(), configuration: configuration, data: [])
+                let timeline = Timeline(entries: [entry], policy: .after(nextUpdate))
+                completion(timeline)
+            }
+        }
     }
 }
 
@@ -35,6 +54,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let data: [String]
 }
 
 
@@ -66,7 +86,7 @@ struct HumanEcologyWidget: Widget {
     let kind: String = "HumanEcologyWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HumanEcology)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HumanEcology)
         }
         .configurationDisplayName("생과대 교직원 식당")
@@ -79,7 +99,7 @@ struct MaterialScienceWidget: Widget {
     let kind: String = "MaterialScienceWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .MaterialScience)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .MaterialScience)
         }
         .configurationDisplayName("신소재 교직원 식당")
@@ -92,7 +112,7 @@ struct ResidenceOneWidget: Widget {
     let kind: String = "ResidenceOneWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .ResidenceOne)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceOne)
         }
         .configurationDisplayName("제 1생활관 식당 위젯")
@@ -105,7 +125,7 @@ struct ResidenceTwoWidget: Widget {
     let kind: String = "ResidenceTwoWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .ResidenceTwo)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceTwo)
         }
         .configurationDisplayName("제 2생활관 식당 위젯")
@@ -119,7 +139,7 @@ struct HanyangPlazaWidget: Widget {
     let kind: String = "HanyangPlazaWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HanyangPlaza)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HanyangPlaza)
         }
         .configurationDisplayName("학생 식당")
@@ -132,7 +152,7 @@ struct HangwonParkWidget: Widget {
     let kind: String = "HangwonParkWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HangwonPark)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HangwonPark)
         }
         .configurationDisplayName("행원파크 식당")
