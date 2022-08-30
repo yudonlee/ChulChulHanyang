@@ -37,7 +37,7 @@ struct ParsingManager {
             return date.keyText
         }()
         
-        if UserDefaults.standard.string(forKey: "DateOf\(type.name)") == "\(dateText)" {
+        if UserDefaults.shared.string(forKey: "DateOf\(type.name)") == "\(dateText)" {
             return true
         }
         return false
@@ -51,7 +51,7 @@ struct ParsingManager {
         }()
         
         
-        guard let data = UserDefaults.standard.string(forKey: "DateOf\(type.name)") else {
+        guard let data = UserDefaults.shared.string(forKey: "DateOf\(type.name)") else {
             return true
         }
         
@@ -63,89 +63,15 @@ struct ParsingManager {
         
     }
     
-    
     static func parsingAsync(type: RestaurantType, completion: @escaping (Result<[String], Error>) -> Void) {
-        
-        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: Date(), restaurantType: type) { result in
-            switch result {
-            case .success(let data):
-                var parsedData = [String]()
-                
-                let getTimeStamp = getMealTime(type: type)
-                
-                switch type {
-                case .HanyangPlaza:
-                    parsedData = data.filter { str in
-                        str.contains("중식/석식")
-                    }.flatMap({ $0 })
-                    
-                case .HumanEcology:
-                    parsedData = data.filter { str in
-                        str.contains(getTimeStamp)
-                    }.flatMap({ $0 })
-                    
-                    if let damAIndex = parsedData.firstIndex(of: "[Dam-A]"),
-                       let pangeosIndex = parsedData.firstIndex(of: "[Pangeos]") {
-                        
-                        let range = pangeosIndex..<parsedData.endIndex
-                        parsedData.removeSubrange(range)
-                    }
-                    
-                    
-                case .MaterialScience:
-                    parsedData = data.filter { str in
-                        str.contains(getTimeStamp)
-                    }.flatMap({ $0 })
-                    
-                    if let jeongsikIndex = parsedData.firstIndex(of: "[정식]"),
-                       let ilpoomIndex = parsedData.firstIndex(of: "[일품]") {
-                        
-                        let range = ilpoomIndex..<parsedData.endIndex
-                        parsedData.removeSubrange(range)
-                    }
-                    
-                case .ResidenceOne, .ResidenceTwo:
-                    parsedData = data.filter { str in
-                        str.contains(getTimeStamp)
-                    }.flatMap({ $0 })
-                    
-                    
-                case .HangwonPark:
-                    var result = data.filter { str in
-                        str.contains(getTimeStamp)
-                    }.flatMap({ $0 })
-                    
-                    if let cornerAIndex = result.firstIndex(of: "[코너 A]"),
-                       let cornerBIndex = result.firstIndex(of: "[코너 B]") {
-                        
-                        let range = cornerBIndex..<result.endIndex
-                        result.removeSubrange(range)
-                    }
-                    
-                }
-                
-                parsedData = parsedData.filter { str in
-                    return str != "-"
-                }
-                completion(.success(parsedData))
-                
-            case .failure(let error):
-                completion(.failure(error))
-                
-            }
-        }
-    }
-    
-    
-    static func parsingAsyncAndLocal(type: RestaurantType, completion: @escaping (Result<[String], Error>) -> Void) {
         
         let dateText: String = {
             let date = Date()
             return date.keyText
         }()
 //        if false {
-        print(UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)"))
-        if isUserDefaultDataToday(type: type), let data = UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
+        print(UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)"))
+        if isUserDefaultDataToday(type: type), let data = UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
 //            var data: [[String]] = []
             var parsedData = [String]()
             
@@ -218,10 +144,10 @@ struct ParsingManager {
                     })
                     
                     if shouldUserDefaultUpdate(type: type) {
-                        UserDefaults.standard.set("\(dateText)", forKey: "DateOf\(type.name)")
-                        print(UserDefaults.standard.string(forKey: "DateOf\(type.name)"))
-                        UserDefaults.standard.set(parsed, forKey: "TodayMenuOf\(type.name)")
-                        print(UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)"))
+                        UserDefaults.shared.set("\(dateText)", forKey: "DateOf\(type.name)")
+                        print(UserDefaults.shared.string(forKey: "DateOf\(type.name)"))
+                        UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(type.name)")
+                        print(UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)"))
                     }
                     
                     var parsedData = [String]()

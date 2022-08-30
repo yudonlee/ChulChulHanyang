@@ -55,7 +55,7 @@ final class MainViewController: UIViewController {
     }
     
     private func isUserDefaultDataToday() -> Bool {
-        if Calendar.current.isDateInToday(date), UserDefaults.standard.string(forKey: "DateOf\(type.name)") == "\(date.keyText)" {
+        if Calendar.current.isDateInToday(date), UserDefaults.shared.string(forKey: "DateOf\(type.name)") == "\(date.keyText)" {
             return true
         }
         return false
@@ -69,7 +69,7 @@ final class MainViewController: UIViewController {
         }()
         
         if Calendar.current.isDateInToday(date) {
-            guard let data = UserDefaults.standard.string(forKey: "DateOf\(type.name)") else {
+            guard let data = UserDefaults.shared.string(forKey: "DateOf\(type.name)") else {
                 return true
             }
             
@@ -83,7 +83,7 @@ final class MainViewController: UIViewController {
     
     func requestData() {
         
-        if isUserDefaultDataToday(), let data = UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
+        if isUserDefaultDataToday(), let data = UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
             DispatchQueue.main.async { [weak self] in
                 self?.data = data
                 self?.dietCollectionView.reloadData()
@@ -101,8 +101,8 @@ final class MainViewController: UIViewController {
                     })
                     
                     if shouldUserDefaultUpdate() {
-                        UserDefaults.standard.set("\(date.keyText)", forKey: "DateOf\(type.name)")
-                        UserDefaults.standard.set(parsed, forKey: "TodayMenuOf\(self.type.name)")
+                        UserDefaults.shared.set("\(date.keyText)", forKey: "DateOf\(type.name)")
+                        UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(self.type.name)")
                     }
                     LoadingService.hideLoading()
                     DispatchQueue.main.async { [weak self] in
