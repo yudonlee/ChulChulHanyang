@@ -69,10 +69,8 @@ struct ParsingManager {
             let date = Date()
             return date.keyText
         }()
-//        if false {
-        print(UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)"))
+
         if isUserDefaultDataToday(type: type), let data = UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
-//            var data: [[String]] = []
             var parsedData = [String]()
             
             let getTimeStamp = getMealTime(type: type)
@@ -145,9 +143,7 @@ struct ParsingManager {
                     
                     if shouldUserDefaultUpdate(type: type) {
                         UserDefaults.shared.set("\(dateText)", forKey: "DateOf\(type.name)")
-                        print(UserDefaults.shared.string(forKey: "DateOf\(type.name)"))
                         UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(type.name)")
-                        print(UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)"))
                     }
                     
                     var parsedData = [String]()
@@ -172,7 +168,6 @@ struct ParsingManager {
                             parsedData.removeSubrange(range)
                         }
                         
-                        
                     case .MaterialScience:
                         parsedData = data.filter { str in
                             str.contains(getTimeStamp)
@@ -189,6 +184,7 @@ struct ParsingManager {
                         parsedData = data.filter { str in
                             str.contains(getTimeStamp)
                         }.flatMap({ $0 })
+                        
                     case .HangwonPark:
                         var result = data.filter { str in
                             str.contains(getTimeStamp)
