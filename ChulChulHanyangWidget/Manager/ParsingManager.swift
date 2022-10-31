@@ -143,10 +143,7 @@ struct ParsingManager {
             let date = Date()
             return date.keyText
         }()
-//        if false {
-        print(UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)"))
         if isUserDefaultDataToday(type: type), let data = UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
-//            var data: [[String]] = []
             var parsedData = [String]()
             
             let getTimeStamp = getMealTime(type: type)
