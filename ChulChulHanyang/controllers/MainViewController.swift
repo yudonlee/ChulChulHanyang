@@ -54,27 +54,69 @@ final class MainViewController: UIViewController {
         requestData()
     }
     
-    func requestData() {
-        LoadingService.showLoading()
-        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { result in
-            switch result {
-            case .success(let crawledData):
-                let parsed = crawledData.map({ strArray in
-                    strArray.filter { str in
-                        !["-"].contains(str)
-                    }
-                })
-                LoadingService.hideLoading()
-                DispatchQueue.main.async { [weak self] in
-                    self?.data = parsed
-                    self?.dietCollectionView.reloadData()
-                    self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
+    private func isUserDefaultDataToday() -> Bool {
+        if Calendar.current.isDateInToday(date), UserDefaults.standard.string(forKey: "DateOf\(type.name)") == "\(date.keyText)" {
+            return true
+        }
+        return false
+    }
+    
+    private func shouldUserDefaultUpdate() -> Bool {
+        
+        let dateText: String = {
+            let date = Date()
+            return date.keyText
+        }()
+        
+        if Calendar.current.isDateInToday(date) {
+            guard let data = UserDefaults.standard.string(forKey: "DateOf\(type.name)") else {
+                return true
             }
-        })
+            
+            if data != "\(dateText)" {
+                return true
+            }
+        }
+        return false
+        
+    }
+    
+    func requestData() {
+        
+        if isUserDefaultDataToday(), let data = UserDefaults.standard.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
+            DispatchQueue.main.async { [weak self] in
+                self?.data = data
+                self?.dietCollectionView.reloadData()
+                self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+            }
+        } else {
+            LoadingService.showLoading()
+            CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { [self] result in
+                switch result {
+                case .success(let crawledData):
+                    let parsed = crawledData.map({ strArray in
+                        strArray.filter { str in
+                            !["-"].contains(str)
+                        }
+                    })
+                    
+                    if shouldUserDefaultUpdate() {
+                        UserDefaults.standard.set("\(date.keyText)", forKey: "DateOf\(type.name)")
+                        UserDefaults.standard.set(parsed, forKey: "TodayMenuOf\(self.type.name)")
+                    }
+                    LoadingService.hideLoading()
+                    DispatchQueue.main.async { [weak self] in
+                        self?.data = parsed
+                        self?.dietCollectionView.reloadData()
+                        self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    LoadingService.hideLoading()
+                }
+            })
+        }
     }
     
     
