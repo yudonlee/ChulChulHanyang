@@ -12,7 +12,7 @@ final class CrawlManager {
     
     static let shared = CrawlManager()
     
-    private init() { }
+    private init() {}
     
     let ramenInformation: [String] = ["분식", "라면", "떡 or 만두 or 치즈 라면", "떡 or 만두 or 치즈 라면 + 공깃밥"]
     
@@ -29,10 +29,6 @@ final class CrawlManager {
             return nil
         }
         
-        if restaurantType == .HanyangPlaza {
-            return crawlHanyangPlaza(url: url)
-        }
-        
         var result = [[String]]()
         do {
             let html = try String(contentsOf: url)
@@ -40,63 +36,91 @@ final class CrawlManager {
             
             let inbox:Elements = try doc.select(".in-box") //.은 클래스
             try inbox.forEach { element in
-                var str = try element.text()
-                str.removeAll(where: { [","].contains($0) })
-                let convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    !element.contains("원")
+                let str = try element.text()
+                
+                let convertedStrArray = self.processDataByType(str, type: restaurantType)
+                if !convertedStrArray.isEmpty {
+                    result.append(convertedStrArray)
                 }
                 
-                result.append(convertedStrArray)
             }
             
-        } catch Exception.Error(let type, let message) {
-            print("Message: \(message)")
         } catch {
-            print("error")
+            print("\(APIError.failedTogetData.localizedDescription)")
         }
         
         return result
         
     }
     
-    func crawlHanyangPlaza(url: URL) -> [[String]]? {
+    func crawlRestaurantMenuAsyncAndURL(date: Date, restaurantType: RestaurantType, completion: @escaping (Result<[[String]], Error>) -> Void)  {
         
-        var result = [[String]]()
+        let linkString = getRestaurantURL(type: restaurantType.link, month: date.month, day: date.day, year: date.year)
         
-        do {
-            let html = try String(contentsOf: url)
-            let doc: Document = try SwiftSoup.parse(html)
-            
-            let inbox:Elements = try doc.select(".in-box") //.은 클래스
-            try inbox.forEach { element in
-                
-                
-                var str = try element.text()
-                if str.contains("라면") {
-                    result.append(ramenInformation)
-                    return
-                }
-                
-//                학생식당 영어 번역 메뉴 삭제
-                str = str.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
-                str.removeAll(where: { [","].contains($0) })
-                var convertedStrArray = str.components(separatedBy: " ").map { String($0) }.filter { element in
-                    return !element.isEmpty && !(element.contains(":")) &&
-                    !(element.contains("원"))
-                }
-                
-                if convertedStrArray.contains("공통찬") {
-                   return
-                }
-                
-                result.append(convertedStrArray)
-            }
-        } catch Exception.Error(let type, let message) {
-            print("Message: \(message)")
-        } catch {
-            print("error")
+        guard let encodedStr = linkString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encodedStr) else {
+            return
         }
-        return result
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            var result = [[String]]()
+            guard let data = data, let html = String(data: data, encoding: .utf8) else {
+                return
+            }
+            do {
+                let doc: Document = try SwiftSoup.parse(html)
+                
+                let inbox:Elements = try doc.select(".in-box") //.은 클래스
+
+                try inbox.forEach { element in
+                    let str = try element.text()
+                    let convertedStrArray = self.processDataByType(str, type: restaurantType)
+                    if !convertedStrArray.isEmpty {
+                        result.append(convertedStrArray)
+                    }
+                }
+                completion(.success(result))
+            }  catch {
+                completion(.failure(APIError.failedTogetData))
+            }
+        }
+        task.resume()
+        
     }
+    
+    private func processDataByType(_ str: String, type: RestaurantType) -> [String] {
+    
+        var removedData = str
+        
+//        영어메뉴 삭제 
+        if type == .HanyangPlaza || type == .ResidenceTwo {
+            removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
+        }
+        
+        if type != .HanyangPlaza {
+            
+            removedData.removeAll(where: { [","].contains($0) })
+            let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
+                !element.contains("00원") && !element.isEmpty
+            }
+            return convertedStrArray
+        } else {
+            if str.contains("떡 or 만두 or 치즈 라면") {
+                return ramenInformation
+            }
+            
+            removedData.removeAll(where: { [","].contains($0) })
+            let convertedStrArray = removedData.components(separatedBy: " ").map { String($0) }.filter { element in
+                return !element.isEmpty && !(element.contains(":")) &&
+                !(element.contains("00원"))
+            }
+            
+            if convertedStrArray.contains("공통찬") {
+                return []
+            }
+            return convertedStrArray
+        }
+        
+    }
+    
 }
 

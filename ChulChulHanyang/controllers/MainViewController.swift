@@ -10,8 +10,22 @@ import UIKit
 final class MainViewController: UIViewController {
     
     lazy private var data: [[String]] = [[String]]()
-    lazy private var datePartView: DateView = DateView()
-    lazy private var restaurantSelectView: RestaurantListView = RestaurantListView()
+    
+    lazy private var datePartView: DateView = {
+        let dateView = DateView()
+        dateView.delegate = self
+        return dateView
+    }()
+    
+    lazy private var restaurantSelectView: RestaurantListView = {
+        let view = RestaurantListView()
+        view.delegate = self
+        return view
+    }()
+    
+    private var type: RestaurantType = .HumanEcology
+    private var date: Date = Date()
+    
     
     lazy private var dietCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,7 +39,7 @@ final class MainViewController: UIViewController {
     
     private let emptyMenuInformation: UILabel = {
        let label = UILabel()
-        label.text = "해당 식당은 오늘 운영하지 않아요😢"
+        label.text = "등록된 정보를 찾지 못했어요😢"
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.isHidden = true
         label.textAlignment = .center
@@ -37,25 +51,71 @@ final class MainViewController: UIViewController {
         render()
         dietCollectionView.delegate = self
         dietCollectionView.dataSource = self
-        datePartView.setParentViewController(view: self)
-        restaurantSelectView.setParentViewController(view: self)
         requestData()
+    }
+    
+    private func isUserDefaultDataToday() -> Bool {
+        if Calendar.current.isDateInToday(date), UserDefaults.shared.string(forKey: "DateOf\(type.name)") == "\(date.keyText)" {
+            return true
+        }
+        return false
+    }
+    
+    private func shouldUserDefaultUpdate() -> Bool {
+        
+        let dateText: String = {
+            let date = Date()
+            return date.keyText
+        }()
+        
+        if Calendar.current.isDateInToday(date) {
+            guard let data = UserDefaults.shared.string(forKey: "DateOf\(type.name)") else {
+                return true
+            }
+            
+            if data != "\(dateText)" {
+                return true
+            }
+        }
+        return false
+        
     }
     
     func requestData() {
         
-        guard let crawledData = CrawlManager.shared.crawlRestaurantMenu(date: datePartView.userDateData(), restaurantType: restaurantSelectView.typeData()) else {
-            return
-        }
-        
-        data = crawledData.map({ strArray in
-            strArray.filter { str in
-                !["-"].contains(str)
+        if isUserDefaultDataToday(), let data = UserDefaults.shared.array(forKey: "TodayMenuOf\(type.name)") as? [[String]] {
+            DispatchQueue.main.async { [weak self] in
+                self?.data = data
+                self?.dietCollectionView.reloadData()
+                self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
             }
-        })
-        DispatchQueue.main.async { [weak self] in
-            self?.dietCollectionView.reloadData()
-            self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+        } else {
+            LoadingService.showLoading()
+            CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { [self] result in
+                switch result {
+                case .success(let crawledData):
+                    let parsed = crawledData.map({ strArray in
+                        strArray.filter { str in
+                            !["-"].contains(str)
+                        }
+                    })
+                    
+                    if shouldUserDefaultUpdate() {
+                        UserDefaults.shared.set("\(date.keyText)", forKey: "DateOf\(type.name)")
+                        UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(self.type.name)")
+                    }
+                    LoadingService.hideLoading()
+                    DispatchQueue.main.async { [weak self] in
+                        self?.data = parsed
+                        self?.dietCollectionView.reloadData()
+                        self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    LoadingService.hideLoading()
+                }
+            })
         }
     }
     
@@ -112,7 +172,7 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         cell.layer.cornerRadius = 22
-        let model = MenuViewModel(diet: data[indexPath.row], type: restaurantSelectView.typeData())
+        let model = MenuViewModel(diet: data[indexPath.row], type: type)
         cell.configure(with: model)
         
         return cell
@@ -132,3 +192,20 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 }
 
+
+extension MainViewController: RestaurantCollectionViewCellDelegate {
+    
+    func restaurantCollectionViewCellTapped(_ type: RestaurantType) {
+        self.type = type
+        requestData()
+    }
+    
+}
+
+extension MainViewController: DateViewDelegate {
+    func dateViewValueChange(_ date: Date) {
+        self.date = date
+        requestData()
+    }
+    
+}

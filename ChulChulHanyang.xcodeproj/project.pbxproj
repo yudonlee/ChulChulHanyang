@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */; };
+		7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
+		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
+		762BB6F628B785A90072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
+		762BB6F728B785DB0072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
+		762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6FD28B7A1F90072C317 /* LoadingService.swift */; };
 		76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76564A9928A2AA8100C07A99 /* MenuViewModel.swift */; };
 		767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB4289FE428006DF76F /* AppDelegate.swift */; };
 		767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB6289FE428006DF76F /* SceneDelegate.swift */; };
@@ -23,13 +29,56 @@
 		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
 		767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */; };
 		767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */; };
+		7693535E28AB2ADD007F2F81 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7693535D28AB2ADD007F2F81 /* WidgetKit.framework */; };
+		7693536028AB2ADD007F2F81 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7693535F28AB2ADD007F2F81 /* SwiftUI.framework */; };
+		7693536328AB2ADD007F2F81 /* ChulChulHanyangWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */; };
+		7693536628AB2ADE007F2F81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7693536528AB2ADE007F2F81 /* Assets.xcassets */; };
+		7693536828AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */; };
+		7693536928AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */; };
+		7693536C28AB2ADE007F2F81 /* ChulChulHanyangWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7693537228AB2B48007F2F81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 7693537128AB2B48007F2F81 /* SwiftSoup */; };
+		7693537428AB2D6A007F2F81 /* CrawlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20FD28A1542D00FDD319 /* CrawlManager.swift */; };
+		7693537528AB2D97007F2F81 /* RestaurantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */; };
+		7693537628AB2DAD007F2F81 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD2289FF537006DF76F /* Date+Extension.swift */; };
+		7693537728AB2DB5007F2F81 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD5289FF723006DF76F /* DateFormatter.swift */; };
+		7693537C28ABC67F007F2F81 /* ChulChulHanyangWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */; };
 		76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */; };
+		76E97EFE28BE01B20018D50C /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E97EFD28BE01B20018D50C /* UserDefaults+Extension.swift */; };
+		76E97EFF28BE04430018D50C /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E97EFD28BE01B20018D50C /* UserDefaults+Extension.swift */; };
 		76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */; };
 		76EC20FB28A1519D00FDD319 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 76EC20FA28A1519D00FDD319 /* SwiftSoup */; };
 		76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EC20FD28A1542D00FDD319 /* CrawlManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7693536A28AB2ADE007F2F81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 767D1CA9289FE428006DF76F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7693535A28AB2ADD007F2F81;
+			remoteInfo = ChulChulHanyangWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7693536D28AB2ADE007F2F81 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7693536C28AB2ADE007F2F81 /* ChulChulHanyangWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyConstant.swift; sourceTree = "<group>"; };
+		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
+		762BB6F528B785A90072C317 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		762BB6FD28B7A1F90072C317 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
 		76564A9928A2AA8100C07A99 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		767D1CB1289FE428006DF76F /* ChulChulHanyang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChulChulHanyang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767D1CB4289FE428006DF76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +97,18 @@
 		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChulChulHanyangWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7693535D28AB2ADD007F2F81 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7693535F28AB2ADD007F2F81 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangWidget.swift; sourceTree = "<group>"; };
+		7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ChulChulHanyangWidget.intentdefinition; sourceTree = "<group>"; };
+		7693536528AB2ADE007F2F81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7693536728AB2ADE007F2F81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangWidgetEntryView.swift; sourceTree = "<group>"; };
 		76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantType.swift; sourceTree = "<group>"; };
+		76E97ED628BB54C10018D50C /* ChulChulHanyang.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChulChulHanyang.entitlements; sourceTree = "<group>"; };
+		76E97ED728BB5DA10018D50C /* ChulChulHanyangWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChulChulHanyangWidgetExtension.entitlements; sourceTree = "<group>"; };
+		76E97EFD28BE01B20018D50C /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extension.swift"; sourceTree = "<group>"; };
 		76EC20F728A14E6800FDD319 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		76EC20FD28A1542D00FDD319 /* CrawlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrawlManager.swift; sourceTree = "<group>"; };
@@ -63,13 +123,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7693535828AB2ADD007F2F81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7693536028AB2ADD007F2F81 /* SwiftUI.framework in Frameworks */,
+				7693535E28AB2ADD007F2F81 /* WidgetKit.framework in Frameworks */,
+				7693537228AB2B48007F2F81 /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7622395A28ACCA30006F75F0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				7622395B28ACCA38006F75F0 /* ParsingManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		767D1CA8289FE428006DF76F = {
 			isa = PBXGroup;
 			children = (
+				76E97ED728BB5DA10018D50C /* ChulChulHanyangWidgetExtension.entitlements */,
 				767D1CB3289FE428006DF76F /* ChulChulHanyang */,
+				7693536128AB2ADD007F2F81 /* ChulChulHanyangWidget */,
+				7693535C28AB2ADD007F2F81 /* Frameworks */,
 				767D1CB2289FE428006DF76F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				767D1CB1289FE428006DF76F /* ChulChulHanyang.app */,
+				7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,6 +167,7 @@
 		767D1CB3289FE428006DF76F /* ChulChulHanyang */ = {
 			isa = PBXGroup;
 			children = (
+				76E97ED628BB54C10018D50C /* ChulChulHanyang.entitlements */,
 				767D1CCE289FEB54006DF76F /* Globals */,
 				767D1CDF28A0EAC9006DF76F /* ViewModels */,
 				767D1CCB289FE8F7006DF76F /* View */,
@@ -135,6 +218,7 @@
 				767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */,
 				767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */,
 				76EC20F028A101D900FDD319 /* UIScreen+Extension.swift */,
+				76E97EFD28BE01B20018D50C /* UserDefaults+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -144,6 +228,9 @@
 			children = (
 				767D1CD5289FF723006DF76F /* DateFormatter.swift */,
 				76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */,
+				762BB6F528B785A90072C317 /* APIError.swift */,
+				762BB6FD28B7A1F90072C317 /* LoadingService.swift */,
+				7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -165,6 +252,28 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		7693535C28AB2ADD007F2F81 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7693535D28AB2ADD007F2F81 /* WidgetKit.framework */,
+				7693535F28AB2ADD007F2F81 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7693536128AB2ADD007F2F81 /* ChulChulHanyangWidget */ = {
+			isa = PBXGroup;
+			children = (
+				7622395A28ACCA30006F75F0 /* Manager */,
+				7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */,
+				7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */,
+				7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */,
+				7693536528AB2ADE007F2F81 /* Assets.xcassets */,
+				7693536728AB2ADE007F2F81 /* Info.plist */,
+			);
+			path = ChulChulHanyangWidget;
+			sourceTree = "<group>";
+		};
 		76EC20FC28A1542200FDD319 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,10 +292,12 @@
 				767D1CAD289FE428006DF76F /* Sources */,
 				767D1CAE289FE428006DF76F /* Frameworks */,
 				767D1CAF289FE428006DF76F /* Resources */,
+				7693536D28AB2ADE007F2F81 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7693536B28AB2ADE007F2F81 /* PBXTargetDependency */,
 			);
 			name = ChulChulHanyang;
 			packageProductDependencies = (
@@ -195,6 +306,26 @@
 			productName = ChulChulHanyang;
 			productReference = 767D1CB1289FE428006DF76F /* ChulChulHanyang.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7693535A28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7693537028AB2ADE007F2F81 /* Build configuration list for PBXNativeTarget "ChulChulHanyangWidgetExtension" */;
+			buildPhases = (
+				7693535728AB2ADD007F2F81 /* Sources */,
+				7693535828AB2ADD007F2F81 /* Frameworks */,
+				7693535928AB2ADD007F2F81 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChulChulHanyangWidgetExtension;
+			packageProductDependencies = (
+				7693537128AB2B48007F2F81 /* SwiftSoup */,
+			);
+			productName = ChulChulHanyangWidgetExtension;
+			productReference = 7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -207,6 +338,9 @@
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					767D1CB0289FE428006DF76F = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					7693535A28AB2ADD007F2F81 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
 				};
@@ -229,6 +363,7 @@
 			projectRoot = "";
 			targets = (
 				767D1CB0289FE428006DF76F /* ChulChulHanyang */,
+				7693535A28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -243,6 +378,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7693535928AB2ADD007F2F81 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7693536628AB2ADE007F2F81 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -252,9 +395,11 @@
 			files = (
 				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
 				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
+				7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
+				762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */,
 				767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */,
 				767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */,
 				767D1CCD289FE90C006DF76F /* DateView.swift in Sources */,
@@ -262,15 +407,44 @@
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */,
 				76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */,
+				7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */,
+				76E97EFE28BE01B20018D50C /* UserDefaults+Extension.swift in Sources */,
+				762BB6F628B785A90072C317 /* APIError.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
 				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
 				76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */,
+				7693536928AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */,
 				767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */,
 				76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7693535728AB2ADD007F2F81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7693537728AB2DB5007F2F81 /* DateFormatter.swift in Sources */,
+				7693537628AB2DAD007F2F81 /* Date+Extension.swift in Sources */,
+				7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */,
+				7693537C28ABC67F007F2F81 /* ChulChulHanyangWidgetEntryView.swift in Sources */,
+				7693536328AB2ADD007F2F81 /* ChulChulHanyangWidget.swift in Sources */,
+				7693537428AB2D6A007F2F81 /* CrawlManager.swift in Sources */,
+				7693537528AB2D97007F2F81 /* RestaurantType.swift in Sources */,
+				7693536828AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */,
+				76E97EFF28BE04430018D50C /* UserDefaults+Extension.swift in Sources */,
+				762BB6F728B785DB0072C317 /* APIError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7693536B28AB2ADE007F2F81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7693535A28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension */;
+			targetProxy = 7693536A28AB2ADE007F2F81 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */ = {
@@ -406,8 +580,10 @@
 		767D1CC6289FE429006DF76F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChulChulHanyang/ChulChulHanyang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
@@ -424,7 +600,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -436,8 +612,10 @@
 		767D1CC7289FE429006DF76F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChulChulHanyang/ChulChulHanyang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
@@ -454,9 +632,67 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7693536E28AB2ADE007F2F81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ChulChulHanyangWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2RG6A633V9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChulChulHanyangWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ChulChulHanyangWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7693536F28AB2ADE007F2F81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ChulChulHanyangWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2RG6A633V9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChulChulHanyangWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ChulChulHanyangWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -484,6 +720,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		7693537028AB2ADE007F2F81 /* Build configuration list for PBXNativeTarget "ChulChulHanyangWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7693536E28AB2ADE007F2F81 /* Debug */,
+				7693536F28AB2ADE007F2F81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -498,6 +743,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7693537128AB2B48007F2F81 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76EC20F928A1519D00FDD319 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		76EC20FA28A1519D00FDD319 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 76EC20F928A1519D00FDD319 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
