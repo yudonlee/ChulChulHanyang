@@ -95,7 +95,7 @@ final class MainViewController: UIViewController {
                     }
                 })
                 
-                if let status = self?.shouldUserDefaultUpdate(), status, let dateKeyText = self?.date.keyText, let typeName = self?.type.name {
+                if !parsed.isEmpty, let status = self?.shouldUserDefaultUpdate(), status, let dateKeyText = self?.date.keyText, let typeName = self?.type.name {
                     UserDefaults.shared.set("\(dateKeyText)", forKey: "DateOf\(typeName)")
                     UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(typeName)")
                 }
@@ -135,7 +135,7 @@ final class MainViewController: UIViewController {
                         }
                     })
                     
-                    if shouldUserDefaultUpdate() {
+                    if !parsed.isEmpty, shouldUserDefaultUpdate() {
                         UserDefaults.shared.set("\(date.keyText)", forKey: "DateOf\(type.name)")
                         UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(self.type.name)")
                     }
