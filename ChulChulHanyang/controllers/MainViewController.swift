@@ -34,15 +34,18 @@ final class MainViewController: UIViewController {
         collectionView.register(DietCollectionViewCell.self, forCellWithReuseIdentifier: DietCollectionViewCell.identifier)
         collectionView.backgroundColor = .backgroundGray
         collectionView.allowsSelection = false
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(requestDataByRefreshControl), for: .valueChanged)
         return collectionView
     }()
     
     private let emptyMenuInformation: UILabel = {
        let label = UILabel()
-        label.text = "등록된 정보를 찾지 못했어요😢"
+        label.text = "등록된 정보를 찾지 못했어요😢\n 화면을 아래로 당겨 새로고침 해보세요."
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.isHidden = true
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -79,6 +82,38 @@ final class MainViewController: UIViewController {
         }
         return false
         
+    }
+    
+    @objc
+    private func requestDataByRefreshControl() {
+        CrawlManager.shared.crawlRestaurantMenuAsyncAndURL(date: date,  restaurantType: type, completion: { [weak self] result in
+            switch result {
+            case .success(let crawledData):
+                let parsed = crawledData.map({ strArray in
+                    strArray.filter { str in
+                        !["-"].contains(str)
+                    }
+                })
+                
+                if let status = self?.shouldUserDefaultUpdate(), status, let dateKeyText = self?.date.keyText, let typeName = self?.type.name {
+                    UserDefaults.shared.set("\(dateKeyText)", forKey: "DateOf\(typeName)")
+                    UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(typeName)")
+                }
+                
+                DispatchQueue.main.async { [weak self] in
+                    self?.data = parsed
+                    self?.dietCollectionView.reloadData()
+                    self?.emptyMenuInformation.isHidden = (self?.data.isEmpty)! ? false : true
+                    self?.dietCollectionView.refreshControl?.endRefreshing()
+                }
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self?.dietCollectionView.refreshControl?.endRefreshing()
+                }
+            }
+        })
     }
     
     func requestData() {
@@ -150,9 +185,8 @@ final class MainViewController: UIViewController {
         let emptyMenuInformationConstraints = [
             emptyMenuInformation.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             emptyMenuInformation.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            emptyMenuInformation.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            emptyMenuInformation.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            emptyMenuInformation.heightAnchor.constraint(equalToConstant: 30)
+            emptyMenuInformation.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            emptyMenuInformation.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ]
         
         [datePartViewConstraints, restaurantSelectViewConstraints, dietCollectionViewConstraints, emptyMenuInformationConstraints].forEach { constraint in
