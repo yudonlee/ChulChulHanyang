@@ -141,7 +141,7 @@ struct ParsingManager {
                         }
                     })
                     
-                    if shouldUserDefaultUpdate(type: type) {
+                    if !parsed.isEmpty, shouldUserDefaultUpdate(type: type) {
                         UserDefaults.shared.set("\(dateText)", forKey: "DateOf\(type.name)")
                         UserDefaults.shared.set(parsed, forKey: "TodayMenuOf\(type.name)")
                     }
