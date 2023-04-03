@@ -65,6 +65,9 @@ final class RestaurantListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func selectRestaurant(restaurant: RestaurantType) {
+        restaurantCollectionView.selectItem(at: IndexPath(item: restaurant.rawValue, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
     private func setCollectionViewLayout() {
         self.addSubview(restaurantCollectionView)
         

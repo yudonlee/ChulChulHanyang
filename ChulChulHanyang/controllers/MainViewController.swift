@@ -57,6 +57,12 @@ final class MainViewController: UIViewController {
         requestData()
     }
     
+    func selectRestaurant(restaurant: String) {
+        
+        guard let restaurant = RestaurantType(englishName: restaurant) else { return }
+        restaurantSelectView.selectRestaurant(restaurant: restaurant)
+    }
+    
     private func isUserDefaultDataToday() -> Bool {
         if Calendar.current.isDateInToday(date), UserDefaults.shared.string(forKey: "DateOf\(type.name)") == "\(date.keyText)" {
             return true
