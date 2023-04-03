@@ -84,10 +84,11 @@ struct ChulChulHanyangWidgetOthers: WidgetBundle {
 
 struct HumanEcologyWidget: Widget {
     let kind: String = "HumanEcologyWidget"
-
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HumanEcology)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HumanEcology)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .HumanEcology, widgetType: .smallWidget))
         }
         .configurationDisplayName("생과대 교직원 식당")
         .description("해당 메뉴들은 시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 이때 생과대에서 중식은 두개의 식당이 제공되는데, 이중 Dam-A식당만이 위젯에 나타납니다.")
@@ -101,6 +102,7 @@ struct MaterialScienceWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .MaterialScience)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .MaterialScience)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .MaterialScience, widgetType: .smallWidget))
         }
         .configurationDisplayName("신소재 교직원 식당")
         .description("해당 메뉴들은 시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 이때 신소재에서 중식은 두개의 식당이 제공되는데, 이중 정식식당 만이 위젯에 나타납니다.")
@@ -114,6 +116,7 @@ struct ResidenceOneWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .ResidenceOne)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceOne)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .ResidenceOne, widgetType: .smallWidget))
         }
         .configurationDisplayName("제 1생활관 식당 위젯")
         .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다.")
@@ -127,6 +130,7 @@ struct ResidenceTwoWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .ResidenceTwo)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .ResidenceTwo)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .ResidenceTwo, widgetType: .smallWidget))
         }
         .configurationDisplayName("제 2생활관 식당 위젯")
         .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다.")
@@ -141,6 +145,7 @@ struct HanyangPlazaWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HanyangPlaza)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HanyangPlaza)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .HanyangPlaza, widgetType: .smallWidget))
         }
         .configurationDisplayName("학생 식당")
         .description("한플 학생식당에선 라면을 제외한 모든 메뉴가 보여집니다.")
@@ -154,6 +159,7 @@ struct HangwonParkWidget: Widget {
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider(type: .HangwonPark)) { entry in
             ChulChulHanyangWidgetEntryView(entry: entry, type: .HangwonPark)
+                .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .HangwonPark, widgetType: .smallWidget))
         }
         .configurationDisplayName("행원파크 식당")
         .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 중식 메뉴에선 두개의 식당 중 코너 A에서 제공되는 메뉴만 보여집니다.")
