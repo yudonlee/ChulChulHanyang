@@ -58,8 +58,6 @@ struct SimpleEntry: TimelineEntry {
 }
 
 
-
-
 @main
 struct ChulChulHanyangWidget: WidgetBundle {
     var body: some Widget {
@@ -68,6 +66,9 @@ struct ChulChulHanyangWidget: WidgetBundle {
         ResidenceOneWidget()
         ResidenceTwoWidget()
         ChulChulHanyangWidgetOthers().body
+        if #available(iOS 16.0, *) {
+            ChulChulHanyangWidgetLockscreen().body
+        }
     }
 }
 
@@ -77,6 +78,7 @@ struct ChulChulHanyangWidgetOthers: WidgetBundle {
         HangwonParkWidget()
     }
 }
+
 
 
 
@@ -162,7 +164,7 @@ struct HangwonParkWidget: Widget {
                 .widgetURL(URLConstants.makeWidgetDeeplink(restaurant: .HangwonPark, widgetType: .smallWidget))
         }
         .configurationDisplayName("행원파크 식당")
-        .description("시간에 맞춰 조식, 중식, 석식 메뉴가 보여집니다. 중식 메뉴에선 두개의 식당 중 코너 A에서 제공되는 메뉴만 보여집니다.")
+        .description("행원 파크는 중식 메뉴만 보여집니다. 이때 교직원 식당 메뉴만 제공됩니다.")
         .supportedFamilies([.systemSmall])
     }
 }
