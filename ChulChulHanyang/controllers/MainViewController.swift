@@ -58,9 +58,10 @@ final class MainViewController: UIViewController {
     }
     
     func selectRestaurant(restaurant: String) {
-        
         guard let restaurant = RestaurantType(englishName: restaurant) else { return }
-        restaurantSelectView.selectRestaurant(restaurant: restaurant)
+        if restaurant != self.type {
+            restaurantSelectView.selectRestaurant(restaurant: restaurant)
+        }
     }
     
     private func isUserDefaultDataToday() -> Bool {
@@ -184,7 +185,7 @@ final class MainViewController: UIViewController {
             dietCollectionView.topAnchor.constraint(equalTo: restaurantSelectView.bottomAnchor, constant: 32),
             dietCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             dietCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            dietCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            dietCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
         ]
         

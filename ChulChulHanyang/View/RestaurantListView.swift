@@ -66,8 +66,11 @@ final class RestaurantListView: UIView {
     }
     
     func selectRestaurant(restaurant: RestaurantType) {
+        
         restaurantCollectionView.selectItem(at: IndexPath(item: restaurant.rawValue, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        collectionView(restaurantCollectionView, didSelectItemAt: IndexPath(item: restaurant.rawValue, section: 0))
     }
+    
     private func setCollectionViewLayout() {
         self.addSubview(restaurantCollectionView)
         
