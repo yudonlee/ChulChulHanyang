@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760EDC2629FBDAE4005B1C2E /* RestaurantMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */; };
 		7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */; };
 		7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
@@ -26,7 +27,7 @@
 		767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */; };
 		767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */; };
 		767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */; };
-		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
+		767D1CE128A0EAE8006DF76F /* RestaurantMenuListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */; };
 		767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */; };
 		767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */; };
 		767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuListView.swift; sourceTree = "<group>"; };
 		7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyConstant.swift; sourceTree = "<group>"; };
 		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
 		762BB6F528B785A90072C317 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuListViewModel.swift; sourceTree = "<group>"; };
 		767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangLockscreenWidget.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */,
 				767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */,
 				767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */,
+				760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,7 +252,7 @@
 		767D1CDF28A0EAC9006DF76F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */,
+				767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */,
 				76564A9928A2AA8100C07A99 /* MenuViewModel.swift */,
 			);
 			path = ViewModels;
@@ -398,7 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
-				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
+				767D1CE128A0EAE8006DF76F /* RestaurantMenuListViewModel.swift in Sources */,
 				7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */,
 				767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
@@ -412,6 +415,7 @@
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */,
 				76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */,
+				760EDC2629FBDAE4005B1C2E /* RestaurantMenuListView.swift in Sources */,
 				7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */,
 				76E97EFE28BE01B20018D50C /* UserDefaults+Extension.swift in Sources */,
 				762BB6F628B785A90072C317 /* APIError.swift in Sources */,
@@ -666,7 +670,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -695,7 +699,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
