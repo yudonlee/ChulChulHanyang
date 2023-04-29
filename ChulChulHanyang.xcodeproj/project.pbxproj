@@ -141,6 +141,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760EDC6729FD6844005B1C2E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				767D1CB4289FE428006DF76F /* AppDelegate.swift */,
+				767D1CB6289FE428006DF76F /* SceneDelegate.swift */,
+				767D1CC2289FE429006DF76F /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7622395A28ACCA30006F75F0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,10 +187,6 @@
 				767D1CDF28A0EAC9006DF76F /* ViewModels */,
 				767D1CCB289FE8F7006DF76F /* View */,
 				767D1CCA289FE8B9006DF76F /* controllers */,
-				767D1CB4289FE428006DF76F /* AppDelegate.swift */,
-				767D1CB6289FE428006DF76F /* SceneDelegate.swift */,
-				767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */,
-				767D1CC2289FE429006DF76F /* Info.plist */,
 			);
 			path = ChulChulHanyang;
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 		767D1CCE289FEB54006DF76F /* Globals */ = {
 			isa = PBXGroup;
 			children = (
+				760EDC6729FD6844005B1C2E /* App */,
 				76EC20FC28A1542200FDD319 /* Manager */,
 				767D1CDB28A0B494006DF76F /* Resources */,
 				767D1CD4289FF71A006DF76F /* Helper */,
@@ -244,6 +251,7 @@
 		767D1CDB28A0B494006DF76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */,
 				767D1CBD289FE429006DF76F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -598,7 +606,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
+				INFOPLIST_FILE = ChulChulHanyang/Globals/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "출출하냥";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -630,7 +638,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
+				INFOPLIST_FILE = ChulChulHanyang/Globals/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "출출하냥";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
