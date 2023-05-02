@@ -9,20 +9,6 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    
-    enum Section {
-        case main
-    }
-    
-    struct Item: Hashable {
-        private let identifier = UUID()
-        let restaurantType: RestaurantType
-        
-        init(restaurantType: RestaurantType) {
-            self.restaurantType = restaurantType
-        }
-    }
-    
     lazy private var datePartView: DateView = {
         let dateView = DateView()
         dateView.delegate = self
@@ -49,26 +35,25 @@ final class MainViewController: UIViewController {
         return stackView
     }()
     
-    private var type: RestaurantType = .HumanEcology
-    private var date: Date = Date()
     private var restaurantMenuListViews: [RestaurantMenuListView]!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    private var restaurantType: RestaurantType = .HumanEcology
+    private var date: Date = Date()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setSegmentViews()
+        setupRestaurantMenuListViews()
         
         configureLayout()
         configureDataSource()
         
-        segmentCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-        restaurantMenuListViews.forEach { $0.displayView(date: date) }
+        setupIntialState()
+        
     }
     
     
-    private func setSegmentViews() {
+    private func setupRestaurantMenuListViews() {
         restaurantMenuListViews = RestaurantType.allCases.map {
             let view = RestaurantMenuListView()
             view.setViewModel(viewModel: RestaurantMenuListViewModel(restaurant: $0))
@@ -76,12 +61,22 @@ final class MainViewController: UIViewController {
         }
     }
     
+    private func setupIntialState() {
+        segmentCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        restaurantMenuListViews.forEach { $0.displayView(date: date) }
+    }
+}
+
+// MARK: Deeplink 처리
+extension MainViewController {
     // Process Deeplink
     func selectRestaurant(restaurant: String) {
-        guard let restaurant = RestaurantType(englishName: restaurant) else { return }
-        if restaurant != self.type {
-            // TODO: 레스토랑 변경
-//            restaurantSelectView.selectRestaurant(restaurant: restaurant)
+        guard let deeplinkRestaurant = RestaurantType(englishName: restaurant) else { return }
+        if deeplinkRestaurant != self.restaurantType {
+
+            guard let indexPath = dataSource.indexPath(for: Item(restaurantType: deeplinkRestaurant)) else { return }
+            segmentCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            collectionView(segmentCollectionView, didSelectItemAt: indexPath)
         }
     }
 }
@@ -132,14 +127,26 @@ extension MainViewController {
         }
         
         [datePartViewConstraints, segmentCollectionViewConstraints, segmentScrollViewConstraints, segmentStackViewConstrinats, restaurantViewConstraints].forEach {
-                NSLayoutConstraint.activate($0)
-            }
-        
+            NSLayoutConstraint.activate($0)
+        }
     }
 }
 
 // MARK: CollectionView Layout, DiffableDataSource {
 extension MainViewController {
+    enum Section {
+        case main
+    }
+    
+    struct Item: Hashable {
+//        private let identifier = UUID()
+        let restaurantType: RestaurantType
+        
+        init(restaurantType: RestaurantType) {
+            self.restaurantType = restaurantType
+        }
+    }
+    
     func createLayout() -> UICollectionViewLayout {
         let layoutSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .absolute(31))
         let item = NSCollectionLayoutItem(layoutSize: layoutSize)
@@ -176,10 +183,11 @@ extension MainViewController: UICollectionViewDelegate {
         
         guard let newType = dataSource.itemIdentifier(for: indexPath)?.restaurantType else { return }
         
-        
-        // TODO: 식당 type 변경에 따른, segment 변경
+        // VC의 식당 변경 및 데이터 요청
+        self.restaurantType = newType
         restaurantMenuListViews[indexPath.item].displayView(date: date)
-        self.type = newType
+        
+        // target 식당으로 scrollView이동
         guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
         let point = CGPoint(x: CGFloat(indexPath.item) * windowWidth, y: 0)
         segmentScrollView.setContentOffset(point, animated: true)
@@ -193,13 +201,12 @@ extension MainViewController: UIScrollViewDelegate {
         guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
         let currentPage = Int(scrollView.contentOffset.x / windowWidth)
         
-        guard let currentPageType = dataSource.itemIdentifier(for: IndexPath(item: currentPage, section: 0))?.restaurantType else { return }
+        guard let currentPageRestaurant = dataSource.itemIdentifier(for: IndexPath(item: currentPage, section: 0))?.restaurantType else { return }
         
-        if currentPageType != type {
+        // 식당변경 및 data요청은 collectionViewDelegate에서만 진행
+        if currentPageRestaurant != restaurantType {
             segmentCollectionView.selectItem(at: IndexPath(item: currentPage, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             collectionView(segmentCollectionView, didSelectItemAt: IndexPath(item: currentPage, section: 0))
-
-            
         }
     }
 }

@@ -197,7 +197,6 @@ extension RestaurantMenuListView: UITableViewDataSource {
         }
 
         cell.contentConfiguration = content
-//        cell.selectionStyle = .none
         return cell
     }
     
