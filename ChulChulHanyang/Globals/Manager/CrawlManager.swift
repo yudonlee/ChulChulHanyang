@@ -5,8 +5,10 @@
 //  Created by yudonlee on 2022/08/08.
 //
 
-import SwiftSoup
+import Combine
 import Foundation
+
+import SwiftSoup
 
 final class CrawlManager {
     
@@ -30,6 +32,7 @@ final class CrawlManager {
         }
         
         var result = [[String]]()
+        
         do {
             let html = try String(contentsOf: url)
             let doc: Document = try SwiftSoup.parse(html)
@@ -42,7 +45,6 @@ final class CrawlManager {
                 if !convertedStrArray.isEmpty {
                     result.append(convertedStrArray)
                 }
-                
             }
             
         } catch {
@@ -52,6 +54,59 @@ final class CrawlManager {
         return result
         
     }
+    
+    func convertDataToMenu(html: String, data: Date, restaurantType: RestaurantType) throws -> [[String]] {
+        var result: [[String]] = []
+        let doc: Document = try SwiftSoup.parse(html)
+        let inbox:Elements = try doc.select(".in-box") //.은 클래스
+        
+        do {
+            try inbox.forEach { element in
+                let menu = try element.text()
+                let convertedMenuList = self.processDataByType(menu, type: restaurantType).filter { $0 != "-" }
+                if !convertedMenuList.isEmpty {
+                    result.append(convertedMenuList)
+                }
+            }
+        } catch {
+            throw NetworkError.failedToParseHtml
+        }
+        return result
+    }
+    
+    func requestMenu(date: Date, restaurantType: RestaurantType) -> AnyPublisher<[[String]], Error> {
+        
+        let stringURL = getRestaurantURL(type: restaurantType.link, month: date.month, day: date.day, year: date.year)
+        guard let encodedStringURL = stringURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: encodedStringURL) else {
+            return Fail(error: NetworkError.failedToConvertURL)
+                .eraseToAnyPublisher()
+        }
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { element -> Data in
+                if let httpResponse = element.response as? HTTPURLResponse,
+                   httpResponse.statusCode != 200 {
+                    throw NetworkError.serverResponseError(statusCode: httpResponse.statusCode)
+                }
+                return element.data
+            }
+            .tryMap { [weak self] data in
+                guard let html = String(data: data, encoding: .utf8) else {
+                    throw NetworkError.failedToLoadHtml
+                }
+                
+                guard let result = try self?.convertDataToMenu(html: html, data: date, restaurantType: restaurantType) else {
+                    throw NetworkError.failedToParseHtml
+                }
+                return result
+            }
+            .eraseToAnyPublisher()
+    }
+    
+}
+
+// TODO: Need to Refactor
+extension CrawlManager {
     
     func crawlRestaurantMenuAsyncAndURL(date: Date, restaurantType: RestaurantType, completion: @escaping (Result<[[String]], Error>) -> Void)  {
         
@@ -70,7 +125,7 @@ final class CrawlManager {
                 let doc: Document = try SwiftSoup.parse(html)
                 
                 let inbox:Elements = try doc.select(".in-box") //.은 클래스
-
+                
                 try inbox.forEach { element in
                     let str = try element.text()
                     let convertedStrArray = self.processDataByType(str, type: restaurantType)
@@ -88,10 +143,10 @@ final class CrawlManager {
     }
     
     private func processDataByType(_ str: String, type: RestaurantType) -> [String] {
-    
+        
         var removedData = str
         
-//        영어메뉴 삭제 
+        //        영어메뉴 삭제
         if type == .HanyangPlaza || type == .ResidenceTwo {
             removedData = removedData.replacingOccurrences(of: "[a-zA-Z]", with: "", options: .regularExpression)
         }
@@ -119,8 +174,5 @@ final class CrawlManager {
             }
             return convertedStrArray
         }
-        
     }
-    
 }
-
