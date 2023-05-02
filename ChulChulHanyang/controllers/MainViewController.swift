@@ -29,9 +29,10 @@ final class MainViewController: UIViewController {
         return dateView
     }()
     
-    private let segmentScrollView: UIScrollView = {
+    lazy private var segmentScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
+        scrollView.delegate = self
         return scrollView
     }()
     
@@ -63,7 +64,9 @@ final class MainViewController: UIViewController {
         configureDataSource()
         
         segmentCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        restaurantMenuListViews.forEach { $0.displayView(date: date) }
     }
+    
     
     private func setSegmentViews() {
         restaurantMenuListViews = RestaurantType.allCases.map {
@@ -170,16 +173,41 @@ extension MainViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        guard let newType = dataSource.itemIdentifier(for: indexPath)?.restaurantType else { return }
+        
+        
         // TODO: 식당 type 변경에 따른, segment 변경
-        guard let type = dataSource.itemIdentifier(for: indexPath)?.restaurantType else { return }
-        print(type)
+        restaurantMenuListViews[indexPath.item].displayView(date: date)
+        self.type = newType
+        guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
+        let point = CGPoint(x: CGFloat(indexPath.item) * windowWidth, y: 0)
+        segmentScrollView.setContentOffset(point, animated: true)
     }
 }
 
+extension MainViewController: UIScrollViewDelegate {
+    // didScroll을 통해서 page시 에러가 발생할 수 있음
+    // didEndDecelerating 사용
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
+        let currentPage = Int(scrollView.contentOffset.x / windowWidth)
+        
+        guard let currentPageType = dataSource.itemIdentifier(for: IndexPath(item: currentPage, section: 0))?.restaurantType else { return }
+        
+        if currentPageType != type {
+            segmentCollectionView.selectItem(at: IndexPath(item: currentPage, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            collectionView(segmentCollectionView, didSelectItemAt: IndexPath(item: currentPage, section: 0))
+
+            
+        }
+    }
+}
 extension MainViewController: DateViewDelegate {
     func dateViewValueChange(_ date: Date) {
-        self.date = date
-        // TODO: 날짜 변경에 따른 display함수 재호출
+        guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
+        let currentPage = Int(segmentScrollView.contentOffset.x / windowWidth)
+        restaurantMenuListViews[currentPage].displayView(date: date)
     }
     
 }
