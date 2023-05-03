@@ -51,8 +51,7 @@ final class MainViewController: UIViewController {
         setupIntialState()
         
     }
-    
-    
+
     private func setupRestaurantMenuListViews() {
         restaurantMenuListViews = RestaurantType.allCases.map {
             let view = RestaurantMenuListView()
@@ -214,6 +213,7 @@ extension MainViewController: DateViewDelegate {
     func dateViewValueChange(_ date: Date) {
         guard let windowWidth = view.window?.windowScene?.screen.bounds.width else { return }
         let currentPage = Int(segmentScrollView.contentOffset.x / windowWidth)
+        self.date = date
         restaurantMenuListViews[currentPage].displayView(date: date)
     }
     
