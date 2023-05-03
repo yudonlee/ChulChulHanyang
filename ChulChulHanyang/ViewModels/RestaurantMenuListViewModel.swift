@@ -49,7 +49,8 @@ final class RestaurantMenuListViewModel {
         switch action {
         case .requestMenu(let newDate):
             guard !self.state.isLoading, !self.state.isRefreshLoading else {
-                return Empty(completeImmediately: false).eraseToAnyPublisher()
+                return Just(Mutation.setLoading(false))
+                    .eraseToAnyPublisher()
             }
             
             if let date = self.state.date, Calendar.current.isDate(date, inSameDayAs: newDate) {
@@ -68,7 +69,8 @@ final class RestaurantMenuListViewModel {
             
         case .refreshMenu(let date):
             guard !self.state.isLoading, !self.state.isRefreshLoading else {
-                return Empty(completeImmediately: false).eraseToAnyPublisher()
+                return Just(Mutation.setRefreshLoading(false))
+                    .eraseToAnyPublisher()
             }
             
             let loadingPublisher = Just(Mutation.setRefreshLoading(true))
