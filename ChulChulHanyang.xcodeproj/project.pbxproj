@@ -29,6 +29,8 @@
 		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
 		767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */; };
 		767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */; };
+		767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */; };
+		767D631F29DB29AA008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */; };
 		7693535E28AB2ADD007F2F81 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7693535D28AB2ADD007F2F81 /* WidgetKit.framework */; };
 		7693536028AB2ADD007F2F81 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7693535F28AB2ADD007F2F81 /* SwiftUI.framework */; };
 		7693536328AB2ADD007F2F81 /* ChulChulHanyangWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */; };
@@ -97,6 +99,7 @@
 		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangLockscreenWidget.swift; sourceTree = "<group>"; };
 		7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChulChulHanyangWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		7693535D28AB2ADD007F2F81 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		7693535F28AB2ADD007F2F81 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -267,6 +270,7 @@
 				7622395A28ACCA30006F75F0 /* Manager */,
 				7693537A28ABC660007F2F81 /* ChulChulHanyangWidgetEntryView.swift */,
 				7693536228AB2ADD007F2F81 /* ChulChulHanyangWidget.swift */,
+				767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */,
 				7693536428AB2ADD007F2F81 /* ChulChulHanyangWidget.intentdefinition */,
 				7693536528AB2ADE007F2F81 /* Assets.xcassets */,
 				7693536728AB2ADE007F2F81 /* Info.plist */,
@@ -396,6 +400,7 @@
 				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
 				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
 				7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */,
+				767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
@@ -428,6 +433,7 @@
 				7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */,
 				7693537C28ABC67F007F2F81 /* ChulChulHanyangWidgetEntryView.swift in Sources */,
 				7693536328AB2ADD007F2F81 /* ChulChulHanyangWidget.swift in Sources */,
+				767D631F29DB29AA008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */,
 				7693537428AB2D6A007F2F81 /* CrawlManager.swift in Sources */,
 				7693537528AB2D97007F2F81 /* RestaurantType.swift in Sources */,
 				7693536828AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */,
@@ -585,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ChulChulHanyang/ChulChulHanyang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
@@ -600,7 +606,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -617,7 +623,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ChulChulHanyang/ChulChulHanyang.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
@@ -632,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

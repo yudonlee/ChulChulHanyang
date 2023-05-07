@@ -112,17 +112,12 @@ struct ParsingManager {
                 }.flatMap({ $0 })
                 
             case .HangwonPark:
-                var result = data.filter { str in
-                    str.contains(getTimeStamp)
-                }.flatMap({ $0 })
+                parsedData = data.flatMap({ $0 })
                 
-                if let cornerAIndex = result.firstIndex(of: "[코너 A]"),
-                   let cornerBIndex = result.firstIndex(of: "[코너 B]") {
-                    
-                    let range = cornerBIndex..<result.endIndex
-                    result.removeSubrange(range)
+                if let studentAMealIndex = parsedData.firstIndex(of: "[학생식A]") {
+                    let range = studentAMealIndex..<parsedData.endIndex
+                    parsedData.removeSubrange(range)
                 }
-                
             }
             
             parsedData = parsedData.filter { str in
@@ -186,17 +181,11 @@ struct ParsingManager {
                         }.flatMap({ $0 })
                         
                     case .HangwonPark:
-                        var result = data.filter { str in
-                            str.contains(getTimeStamp)
-                        }.flatMap({ $0 })
-                        
-                        if let cornerAIndex = result.firstIndex(of: "[코너 A]"),
-                           let cornerBIndex = result.firstIndex(of: "[코너 B]") {
-                            
-                            let range = cornerBIndex..<result.endIndex
-                            result.removeSubrange(range)
+                        parsedData = data.flatMap { $0 }
+                        if let studentAIdx = parsedData.firstIndex(of: "[학생식A]") {
+                            let range = studentAIdx..<parsedData.endIndex
+                            parsedData.removeSubrange(range)
                         }
-                        
                     }
                     
                     parsedData = parsedData.filter { str in
