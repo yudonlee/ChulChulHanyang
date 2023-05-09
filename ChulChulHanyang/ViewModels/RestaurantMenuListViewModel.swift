@@ -40,7 +40,6 @@ final class RestaurantMenuListViewModel {
     }
     
     private var restaurant: RestaurantType
-    private var date: Date
     var state: State
     var cancellables = Set<AnyCancellable>()
     var output: PassthroughSubject<(State, Action), Never> = .init()
@@ -49,8 +48,7 @@ final class RestaurantMenuListViewModel {
         switch action {
         case .requestMenu(let newDate):
             guard !self.state.isLoading, !self.state.isRefreshLoading else {
-                return Just(Mutation.setLoading(false))
-                    .eraseToAnyPublisher()
+                return Empty(completeImmediately: false).eraseToAnyPublisher()
             }
             
             if let date = self.state.date, Calendar.current.isDate(date, inSameDayAs: newDate) {
@@ -119,6 +117,7 @@ final class RestaurantMenuListViewModel {
             return newState
         case .dataLoadError(let error):
             var newState = state
+            newState.date = nil
             newState.menuData = []
             newState.loadingError = error
             return newState
@@ -139,7 +138,6 @@ final class RestaurantMenuListViewModel {
 
     init(restaurant: RestaurantType) {
         self.restaurant = restaurant
-        self.date = Date()
         self.state = State()
         output = PassthroughSubject<(State, Action), Never>()
     }

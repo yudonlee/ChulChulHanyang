@@ -18,12 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = MainViewController()
         window?.makeKeyAndVisible()
-        
+        print(connectionOptions.urlContexts)
         widgetDeeplink(urlContexts: connectionOptions.urlContexts)
     }
     
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        print(URLContexts.first)
         widgetDeeplink(urlContexts: URLContexts)
     }
     
