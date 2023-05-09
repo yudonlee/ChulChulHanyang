@@ -26,6 +26,7 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .backgroundGray
         collectionView.delegate = self
+        collectionView.alwaysBounceVertical = false
         return collectionView
     }()
     
