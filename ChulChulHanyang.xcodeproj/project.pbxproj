@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760EDC2629FBDAE4005B1C2E /* RestaurantMenuListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */; };
 		7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */; };
 		7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		7622395D28AD3CAF006F75F0 /* ParsingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7622395B28ACCA38006F75F0 /* ParsingManager.swift */; };
 		762BB6F628B785A90072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
 		762BB6F728B785DB0072C317 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6F528B785A90072C317 /* APIError.swift */; };
-		762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762BB6FD28B7A1F90072C317 /* LoadingService.swift */; };
-		76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76564A9928A2AA8100C07A99 /* MenuViewModel.swift */; };
 		767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB4289FE428006DF76F /* AppDelegate.swift */; };
 		767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CB6289FE428006DF76F /* SceneDelegate.swift */; };
 		767D1CBE289FE429006DF76F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767D1CBD289FE429006DF76F /* Assets.xcassets */; };
@@ -23,11 +22,9 @@
 		767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD0289FEB64006DF76F /* View+Extension.swift */; };
 		767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD2289FF537006DF76F /* Date+Extension.swift */; };
 		767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD5289FF723006DF76F /* DateFormatter.swift */; };
-		767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */; };
 		767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */; };
 		767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */; };
-		767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */; };
-		767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */; };
+		767D1CE128A0EAE8006DF76F /* RestaurantMenuListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */; };
 		767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */; };
 		767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */; };
 		767D631F29DB29AA008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */; };
@@ -77,11 +74,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuListView.swift; sourceTree = "<group>"; };
 		7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyConstant.swift; sourceTree = "<group>"; };
 		7622395B28ACCA38006F75F0 /* ParsingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingManager.swift; sourceTree = "<group>"; };
 		762BB6F528B785A90072C317 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
-		762BB6FD28B7A1F90072C317 /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
-		76564A9928A2AA8100C07A99 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		767D1CB1289FE428006DF76F /* ChulChulHanyang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChulChulHanyang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767D1CB4289FE428006DF76F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		767D1CB6289FE428006DF76F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,11 +89,9 @@
 		767D1CD0289FEB64006DF76F /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		767D1CD2289FF537006DF76F /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		767D1CD5289FF723006DF76F /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		767D1CDD28A0B7C6006DF76F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
-		767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietCollectionViewCell.swift; sourceTree = "<group>"; };
+		767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMenuListViewModel.swift; sourceTree = "<group>"; };
 		767D1CE828A0F23D006DF76F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		767D631D29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChulChulHanyangLockscreenWidget.swift; sourceTree = "<group>"; };
 		7693535B28AB2ADD007F2F81 /* ChulChulHanyangWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ChulChulHanyangWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +133,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760EDC6729FD6844005B1C2E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				767D1CB4289FE428006DF76F /* AppDelegate.swift */,
+				767D1CB6289FE428006DF76F /* SceneDelegate.swift */,
+				767D1CC2289FE429006DF76F /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7622395A28ACCA30006F75F0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,10 +179,6 @@
 				767D1CDF28A0EAC9006DF76F /* ViewModels */,
 				767D1CCB289FE8F7006DF76F /* View */,
 				767D1CCA289FE8B9006DF76F /* controllers */,
-				767D1CB4289FE428006DF76F /* AppDelegate.swift */,
-				767D1CB6289FE428006DF76F /* SceneDelegate.swift */,
-				767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */,
-				767D1CC2289FE429006DF76F /* Info.plist */,
 			);
 			path = ChulChulHanyang;
 			sourceTree = "<group>";
@@ -195,9 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				767D1CCC289FE90C006DF76F /* DateView.swift */,
-				767D1CD728A0B0F1006DF76F /* RestaurantListView.swift */,
 				767D1CD928A0B2BA006DF76F /* RestaurantCollectionViewCell.swift */,
-				767D1CE628A0F1DC006DF76F /* DietCollectionViewCell.swift */,
+				760EDC2529FBDAE4005B1C2E /* RestaurantMenuListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,6 +204,7 @@
 		767D1CCE289FEB54006DF76F /* Globals */ = {
 			isa = PBXGroup;
 			children = (
+				760EDC6729FD6844005B1C2E /* App */,
 				76EC20FC28A1542200FDD319 /* Manager */,
 				767D1CDB28A0B494006DF76F /* Resources */,
 				767D1CD4289FF71A006DF76F /* Helper */,
@@ -232,7 +232,6 @@
 				767D1CD5289FF723006DF76F /* DateFormatter.swift */,
 				76C2B1FD28A1FE22008AF214 /* RestaurantType.swift */,
 				762BB6F528B785A90072C317 /* APIError.swift */,
-				762BB6FD28B7A1F90072C317 /* LoadingService.swift */,
 				7610C52328B896DF00DB48C5 /* LocalKeyConstant.swift */,
 			);
 			path = Helper;
@@ -241,6 +240,7 @@
 		767D1CDB28A0B494006DF76F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				767D1CBF289FE429006DF76F /* LaunchScreen.storyboard */,
 				767D1CBD289FE429006DF76F /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -249,8 +249,7 @@
 		767D1CDF28A0EAC9006DF76F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				767D1CE028A0EAE8006DF76F /* RestaurantViewModel.swift */,
-				76564A9928A2AA8100C07A99 /* MenuViewModel.swift */,
+				767D1CE028A0EAE8006DF76F /* RestaurantMenuListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -397,27 +396,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				767D1CE728A0F1DC006DF76F /* DietCollectionViewCell.swift in Sources */,
-				767D1CE128A0EAE8006DF76F /* RestaurantViewModel.swift in Sources */,
+				767D1CE128A0EAE8006DF76F /* RestaurantMenuListViewModel.swift in Sources */,
 				7622395C28ACCA38006F75F0 /* ParsingManager.swift in Sources */,
 				767D631E29DB2577008D3034 /* ChulChulHanyangLockscreenWidget.swift in Sources */,
 				767D1CC9289FE8AF006DF76F /* MainViewController.swift in Sources */,
 				767D1CB5289FE428006DF76F /* AppDelegate.swift in Sources */,
 				767D1CD1289FEB64006DF76F /* View+Extension.swift in Sources */,
-				762BB6FE28B7A1F90072C317 /* LoadingService.swift in Sources */,
-				767D1CD828A0B0F1006DF76F /* RestaurantListView.swift in Sources */,
 				767D1CD6289FF723006DF76F /* DateFormatter.swift in Sources */,
 				767D1CCD289FE90C006DF76F /* DateView.swift in Sources */,
 				767D1CDA28A0B2BA006DF76F /* RestaurantCollectionViewCell.swift in Sources */,
 				767D1CB7289FE428006DF76F /* SceneDelegate.swift in Sources */,
 				76C2B1FE28A1FE22008AF214 /* RestaurantType.swift in Sources */,
 				76EC20FE28A1542D00FDD319 /* CrawlManager.swift in Sources */,
+				760EDC2629FBDAE4005B1C2E /* RestaurantMenuListView.swift in Sources */,
 				7610C52428B896DF00DB48C5 /* LocalKeyConstant.swift in Sources */,
 				76E97EFE28BE01B20018D50C /* UserDefaults+Extension.swift in Sources */,
 				762BB6F628B785A90072C317 /* APIError.swift in Sources */,
 				767D1CD3289FF537006DF76F /* Date+Extension.swift in Sources */,
 				767D1CDE28A0B7C6006DF76F /* UIColor+Extension.swift in Sources */,
-				76564A9A28A2AA8100C07A99 /* MenuViewModel.swift in Sources */,
 				7693536928AB2ADE007F2F81 /* ChulChulHanyangWidget.intentdefinition in Sources */,
 				767D1CE928A0F23D006DF76F /* UITableView+Extension.swift in Sources */,
 				76EC20F128A101D900FDD319 /* UIScreen+Extension.swift in Sources */,
@@ -594,7 +590,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
+				INFOPLIST_FILE = ChulChulHanyang/Globals/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "출출하냥";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -606,7 +602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -626,7 +622,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2RG6A633V9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ChulChulHanyang/Info.plist;
+				INFOPLIST_FILE = ChulChulHanyang/Globals/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "출출하냥";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -638,7 +634,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -666,7 +662,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -695,7 +691,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = yudonlee.ChulChulHanyang.ChulChulHanyangWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
