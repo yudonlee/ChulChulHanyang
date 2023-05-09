@@ -94,49 +94,37 @@ final class RestaurantMenuListView: UIView {
     func bind() {
         let output = viewModel.transform(input: input.eraseToAnyPublisher())
         
-        output.sink { (state, action) in
-            self.informationLabel.isHidden = true
-            if state.isRefreshLoading == false {
-                DispatchQueue.main.async {
+        output
+            .receive(on: DispatchQueue.main)
+            .sink { (state, action) in
+                self.informationLabel.isHidden = true
+                if state.isRefreshLoading == false {
                     self.menuListTableView.refreshControl?.endRefreshing()
                 }
-            }
-            
-            if state.isLoading {
-                DispatchQueue.main.async {
+                
+                if state.isLoading {
                     self.indicatorView.startAnimating()
-                }
-            } else {
-                DispatchQueue.main.async {
+                } else {
                     self.indicatorView.stopAnimating()
                 }
-            }
-            
-            switch state.loadingError {
-            case .none:
-                DispatchQueue.main.async {
+                
+                switch state.loadingError {
+                case .none:
                     self.informationLabel.isHidden = true
-                }
-            case .emptyData:
-                DispatchQueue.main.async {
+                case .emptyData:
                     self.informationLabel.isHidden = false
-                    self.informationLabel.text = "식단 데이터가 없어요.😢\n 화면을 아래로 당겨 새로고침 해보세요."
-                }
-            case .failedToNetworkLoading:
-                DispatchQueue.main.async {
+                    self.informationLabel.text = "서버에 등록된 메뉴가 없어요.😢\n 화면을 아래로 당겨 새로고침 해보세요."
+                case .failedToNetworkLoading:
                     self.informationLabel.isHidden = false
-                    self.informationLabel.text = "서버요청이 실패했어요.😢\n 화면을 아래로 당겨 새로고침 해보세요."
+                    self.informationLabel.text = "네트워크 오류가 발생했어요.😢\n 화면을 아래로 당겨 새로고침 해보세요."
                 }
-            }
-            
-            switch action {
-            case .requestMenu, .refreshMenu:
-                self.menus = state.menuData
-                DispatchQueue.main.async {
+                
+                switch action {
+                case .requestMenu, .refreshMenu:
+                    self.menus = state.menuData
                     self.menuListTableView.reloadData()
                 }
-            }
-        }.store(in: &cancellables)
+            }.store(in: &cancellables)
     }
 }
 
